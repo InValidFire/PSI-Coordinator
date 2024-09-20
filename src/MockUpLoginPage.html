@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global styles from existing file */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        code {
+            font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+            monospace;
+        }
+
+        /* New styles for the page */
+        .header, .footer {
+            width: 100%;
+            background-color: #004d00; /* Dark Green */
+            padding: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .header {
+            justify-content: flex-start;
+            padding: 15px 20px; /* Adjust padding for header */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .login-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1; /* Allows the section to grow and fill space */
+            width: 100%;
+        }
+
+        .brackets {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .bracket-icon {
+            font-size: 48px;
+            color: #004d00; /* Dark Green */
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        .welcome-text h1 {
+            font-size: 36px;
+            color: #004d00; /* Dark Green */
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .info-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #333;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-form input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .login-form label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .login-form button {
+            padding: 10px;
+            background-color: #004d00; /* Dark Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #003300; /* Darker Green */
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .social-login button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-login button.google {
+            background-color: #4285F4; /* Google Blue */
+            color: white;
+        }
+
+        .social-login button.facebook {
+            background-color: #3b5998; /* Facebook Blue */
+            color: white;
+        }
+
+        .social-login button.apple {
+            background-color: #000000; /* Apple Black */
+            color: white;
+        }
+
+        .social-login button:hover {
+            opacity: 0.9;
+        }
+
+        .social-login i {
+            margin-right: 8px;
+        }
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Spacing between links */
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            background-color: #004d00; /* Dark Green */
+            border-radius: 50%; /* Circular background */
+            padding: 10px 15px; /* Adjust size */
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">YourLogo</div>
+</header>
+<div class="login-section">
+    <div class="brackets">
+        <span class="bracket-icon">❮</span>
+        <span class="welcome-text">
+            <h1>Login</h1>
+            <p>Log in with your GGC credentials<br>to access your PSI sessions, schedules, and resources</p>
+        </span>
+        <span class="bracket-icon">❯</span>
+    </div>
+    <form class="login-form">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <label>
+            <input type="checkbox">
+            Stay Signed In
+        </label>
+        <button type="submit">Login</button>
+<!--        <div class="social-login">-->
+<!--            <button type="button" class="google">-->
+<!--                <i class="fab fa-google"></i> Login with Google-->
+<!--            </button>-->
+<!--            <button type="button" class="facebook">-->
+<!--                <i class="fab fa-facebook-f"></i> Login with Facebook-->
+<!--            </button>-->
+<!--            <button type="button" class="apple">-->
+<!--                <i class="fab fa-apple"></i> Login with Apple-->
+<!--            </button>-->
+<!--        </div>-->
+    </form>
+</div>
+<footer class="footer">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Contact Info</a>
+    <a href="#">Terms of Service</a>
+</footer>
+</body>
+</html>
