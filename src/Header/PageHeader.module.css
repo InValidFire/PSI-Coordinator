@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css?family=Fugaz+One");
+
+.left
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.appHeader {
+    width: 100%;
+    background-color: darkgreen;
+    font-family: "Fugaz One", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.logo
+{
+    margin: 30px;
+    width: 150px;
+    height: 130px;
+}
+
+.logo img
+{
+    width: 75%;
+    height: auto;
+}
+
+.pageTitleIdentifier
+{
+    font-weight: bold;
+    color: white;
+    margin: 15px;
+    font-size: 1.25rem;
+}
+
+.collapsibleNav
+{
+    justify-content: flex-end;
+}
+
+.navbar
+{
+    align-items: center;
+    gap: 3rem;
+    display: flex;
+    font-size: 1.75rem;
+    margin: 15px;
+    margin-right: 30px;
+}
+
+.navbarLinks
+{
+    color: black;
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    font-size: 1.65rem;
+}
+
+.navbarLinks::after
+{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: darkgreen;
+    transform-origin: bottom right;
+    transition: transform 0.4s ease-out;
+}
+
+.navbarLinks:hover::after
+{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
