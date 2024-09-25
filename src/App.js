@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WelcomeDashboard from "./WelcomeDashboard.js";
+import PageHeader from "./Header/PageHeader.js";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <main className="App">
+          <PageHeader
+              pageTitle=
+                  {
+                      "Welcome!"
+                  }
+              navBarContents=
+                  {
+                      [{
+                          'text': "LOGOUT",
+                          'link': "Logout"
+                      },
+                          {
+                              'text' : "ADD SCHEDULE",
+                              'link': "/addPSISchedule"
+                          }
+
+                      ]
+                  }
+          />
+        <Router>
+          <Routes>
+              <Route path="/welcomedashboard" element={<WelcomeDashboard />} />
+              <Route path="/" element={<WelcomeDashboard />} />
+          </Routes>
+        </Router>
+      </main>
   );
 }
-
 export default App;
