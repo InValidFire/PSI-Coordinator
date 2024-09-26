@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WelcomeDashboard from "./WelcomeDashboard.js";
 import PageHeader from "./Header/PageHeader.js";
+import LoginPage from "./LoginPage.js";
 
 
 function App() {
@@ -11,14 +12,19 @@ function App() {
           <PageHeader
               pageTitle=
                   {
-                      "Welcome!"
+                      "PSI Coordinator"
                   }
               navBarContents=
                   {
-                      [{
-                          'text': "LOGOUT",
-                          'link': "Logout"
-                      },
+                      [
+                          {
+                              'text': "LOGOUT",
+                              'link': "Logout"
+                          },
+                          {
+                              'text': "LOGIN",
+                              'link': "Login"
+                          },
                           {
                               'text' : "ADD SCHEDULE",
                               'link': "/addPSISchedule"
@@ -29,8 +35,9 @@ function App() {
           />
         <Router>
           <Routes>
-              <Route path="/welcomedashboard" element={<WelcomeDashboard />} />
               <Route path="/" element={<WelcomeDashboard />} />
+              <Route path="/welcomedashboard" element={<WelcomeDashboard />} />
+              <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Router>
       </main>
