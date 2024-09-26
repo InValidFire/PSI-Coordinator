@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MainStyles.module.css";
+import styles from "./Pages/CSS/MainStyles.module.css";
 
 const FieldEntry = (props) =>
 {

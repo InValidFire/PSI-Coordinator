@@ -1,9 +1,11 @@
-import "./App.css";
+import "../CSS/App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PSILeaderDashboard from "./PSILeaderDashboard.js";
-import PageHeader from "./HeaderAndFooter/PageHeader.js";
-import LoginPage from "./LoginPage.js";
+import PSILeaderDashboard from "../JS/PSILeaderDashboard.js";
+import PageHeader from "../../HeaderAndFooter/PageHeader.js";
+import LoginPage from "../JS/LoginPage.js";
+import StudentDashboard from "../JS/StudentDashboard.js";
+
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
               <Route path="/welcomedashboard" element={<PSILeaderDashboard />} />
               <Route path="/" element={<PSILeaderDashboard />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/StudentDashboard" element={<StudentDashboard />} />
+
           </Routes>
         </Router>
       </main>

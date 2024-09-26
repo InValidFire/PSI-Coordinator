@@ -1,8 +1,8 @@
 import React, { Component, Fragment} from "react";
 import {Link} from 'react-router-dom';
-import FieldEntry from "./Field-Entry.js";
-import styles from './MainStyles.module.css';
-import AppFooter from './HeaderAndFooter/PageFooter.js';
+import FieldEntry from "../../Field-Entry.js";
+import styles from '../CSS/MainStyles.module.css';
+import AppFooter from '../../HeaderAndFooter/PageFooter.js';
 import {Button, Card, Container} from "react-bootstrap";
 
 {
@@ -39,21 +39,17 @@ class PSILeaderDashboard extends Component
                                                     For now I will use a button so the user can view session details
                                                     */}
                                                     <FieldEntry entryName={"Monday"} entryValue={"12:00PM-1:00PM"}/>
-                                                    <Button
-                                                        className={styles.fillFormButton}
-                                                        type="submit"
-                                                        id="button-addon1"
-                                                    >
-                                                        View Session Details
-                                                    </Button>
+                                                    <Link to="/ViewSession">
+                                                        <button className={styles.fillFormButton}>
+                                                            View Session Details
+                                                        </button>
+                                                    </Link>
                                                     <FieldEntry entryName={"Wednesday"} entryValue={"12:00PM-1:00PM"}/>
-                                                    <Button
-                                                        className={styles.fillFormButton}
-                                                        type="submit"
-                                                        id="button-addon1"
-                                                    >
-                                                        View Session Details
-                                                    </Button>
+                                                    <Link to="/ViewSession">
+                                                        <button className={styles.fillFormButton}>
+                                                            View Session Details
+                                                        </button>
+                                                    </Link>
                                                 </div>
                                             </Card>
                                             <br/>

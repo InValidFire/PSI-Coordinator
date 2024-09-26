@@ -1,0 +1,31 @@
+.footerWrapper {
+    background-color: darkgreen;
+    font-family: "Poppins", sans-serif;
+    font-style: italic;
+    color: white;
+    text-align: center;
+    height: 70px;
+    top: 0%;
+    bottom: 0%;
+}
+
+/* Ensures the text is centered vertically */
+.footerText {
+    padding-top: 20px;
+    font-weight: lighter;
+}
+
+/* Responsive styling for mobile devices */
+@media (max-width: 768px) {
+    .footerWrapper {
+        height: 50px; /* Reduce height for mobile */
+        padding: 10px; /* Add padding for better spacing */
+    }
+
+    .footerText {
+        padding-top: 10px; /* Reduce padding to fit smaller screens */
+        font-size: 14px; /* Adjust text size for mobile */
+        white-space: normal; /* Allow text to wrap on smaller screens */
+        line-height: 1.5;
+    }
+}

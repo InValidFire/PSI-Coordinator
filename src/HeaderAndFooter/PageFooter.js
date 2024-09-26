@@ -1,16 +1,14 @@
 import React from "react";
-import styles from '../MainStyles.module.css';
+import styles from './PageFooter.module.css';
 
-
-const AppFooter = function NavBar()
-{
+const AppFooter = function NavBar() {
     return (
         <footer className={styles.footerWrapper}>
             <div className={styles.footerText}>
-                @Copyright {new Date().getFullYear()} Georgia Gwinnett College.
+                &copy; {new Date().getFullYear()} Georgia Gwinnett College.
             </div>
         </footer>
-    )
-}
+    );
+};
 
 export default AppFooter;
