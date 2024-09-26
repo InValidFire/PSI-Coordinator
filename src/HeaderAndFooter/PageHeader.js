@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+<<<<<<< HEAD:src/HeaderAndFooter/PageHeader.js
+import { Navbar, Nav, Image, Container, Row, Col } from 'react-bootstrap';
+import GGCHeaderLogo from '../AppImages/GGCHeaderLogo.jpeg';
+=======
 import { Navbar, Nav, Image } from 'react-bootstrap';
 import GGCHeaderLogo from '../GGCHeaderLogo.jpeg';
+>>>>>>> main:src/Header/PageHeader.js
 import styles from './PageHeader.module.css';
 
 class PageHeader extends Component {
