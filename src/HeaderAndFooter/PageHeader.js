@@ -1,80 +1,54 @@
 import React, { Component } from "react";
+<<<<<<< HEAD:src/HeaderAndFooter/PageHeader.js
 import { Navbar, Nav, Image, Container, Row, Col } from 'react-bootstrap';
 import GGCHeaderLogo from '../AppImages/GGCHeaderLogo.jpeg';
+=======
+import { Navbar, Nav, Image } from 'react-bootstrap';
+import GGCHeaderLogo from '../GGCHeaderLogo.jpeg';
+>>>>>>> main:src/Header/PageHeader.js
 import styles from './PageHeader.module.css';
 
-class PageHeader extends Component
-{
+class PageHeader extends Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
-
-        this.state =
-            {
-                // page title
-                pageTitle: props.pageTitle,
-            }
+        this.state = {
+            // page title
+            pageTitle: props.pageTitle,
+        };
     }
 
-    render()
-    {
+    render() {
         return (
-            <Navbar
-                className={styles.appHeader}
-            >
-                <Navbar.Brand className={styles.left}>
-                        <Row>
-                            <Col>
-                                <div className={styles.logo}>
-                                    <Image
-                                        src={GGCHeaderLogo}
-                                        alt="GGC Logo"
-                                    />
-                                </div>
-                            </Col>
-                            <Col>
-                                <div className={styles.pageTitleIdentifier}>
-                                    <h1>{this.state.pageTitle}</h1>
-                                </div>
-                            </Col>
-                        </Row>
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+            <Navbar className={styles.appHeader}>
+                <div className={styles.left}>
+                    <Image src={GGCHeaderLogo} alt="GGC Logo" className={styles.logo} />
+                    <div className={styles.pageTitleIdentifier}>
+                        <h1>{this.state.pageTitle}</h1>
+                    </div>
+                </div>
                 <Navbar.Collapse id="basic-navbar-nav" className={styles.collapsibleNav}>
                     <Nav className={styles.navbar}>
-                        {/*
-                            Currently, utilize nav link's text as key identifier for
-                            each item in each navbar instance (May change as some point)
-                        */}
-                        {
-
-                        }
+                        {this.props.navBarContents.map((item, index) => (
+                            <Nav.Link key={index} href={item.link} className={styles.navbarLinks}>
+                                {item.text}
+                            </Nav.Link>
+                        ))}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        )
+        );
     }
 }
 
-/**
- * @name NavBarContent
- * @author Danielle Mathieu
- * Purpose: Returns UI Nav Entry for Every Specified Nav Option
- * Logout option are configured to logout rather than link to new page
- * @param props options passed to this component
- */
-const NavBarContent = function NavBarContent(props)
-{
-    {
-        // for normal pages, create nav option here
-        return (
-            <Nav.Link href={props.navLink} style={{textDecoration: 'none'}}>
-                <div className={styles.navbarLinks}>
-                    {props.navText}
-                </div>
-            </Nav.Link>
-        )
-    }
+const NavBarContent = function NavBarContent(props) {
+    return (
+        <Nav.Link href={props.navLink} style={{ textDecoration: 'none' }}>
+            <div className={styles.navbarLinks}>
+                {props.navText}
+            </div>
+        </Nav.Link>
+    );
 }
+
 export default PageHeader;

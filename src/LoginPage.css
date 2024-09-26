@@ -1,0 +1,185 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Styles for header and footer */
+.header, .footer {
+    width: 100%;
+    background-color: #004d00; /* Dark Green */
+    padding: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    justify-content: flex-start;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    margin-top: 50px; /* Adjusted margin for better alignment on small screens */
+}
+
+/* Bracket styling */
+.brackets {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.bracket-icon {
+    font-size: 36px; /* Slightly smaller for mobile */
+    color: #004d00; /* Dark Green */
+    padding: 10px 15px; /* Adjusted padding */
+}
+
+.welcome-text {
+    text-align: center;
+    margin: 20px; /* Reduced margin for mobile */
+}
+
+.welcome-text h1 {
+    font-size: 36px; /* Responsive font size */
+}
+
+.welcome-text p {
+    font-size: 16px; /* Responsive font size */
+    color: #333;
+    margin-bottom: 50px; /* Adjusted bottom margin */
+}
+
+/* Login form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.login-form label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.login-form button {
+    width: 100%; /* Make the button take the full width of the form */
+    padding: 15px; /* Increase the padding for a larger button */
+    background-color: #004d00; /* Dark Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 50px; /* Adjusted bottom margin */
+}
+
+.login-form button:hover {
+    background-color: #003300; /* Darker Green */
+}
+
+/* Footer styles */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    background-color: #004d00;
+    border-radius: 50%;
+    padding: 10px 15px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .login-section {
+        margin-top: 30px; /* Smaller margin for mobile */
+    }
+
+    .welcome-text h1 {
+        font-size: 28px; /* Smaller heading on mobile */
+    }
+
+    .welcome-text p {
+        font-size: 14px; /* Adjusted paragraph font size */
+    }
+
+    .bracket-icon {
+        font-size: 24px; /* Smaller icons on mobile */
+    }
+
+    .login-form {
+        width: 95%; /* Make the form almost full width on mobile */
+        padding: 15px; /* Reduce padding for mobile */
+    }
+
+    .login-form input {
+        padding: 12px; /* Adjust input padding */
+        font-size: 14px; /* Smaller font size for inputs */
+    }
+
+    .login-form button {
+        padding: 12px; /* Adjust button padding */
+        font-size: 14px; /* Smaller button font size */
+    }
+}
