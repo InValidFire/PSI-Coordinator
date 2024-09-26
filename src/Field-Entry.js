@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PSICoordinator.module.css";
+import styles from "./MainStyles.module.css";
 
 const FieldEntry = (props) =>
 {

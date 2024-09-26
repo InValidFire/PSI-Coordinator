@@ -1,8 +1,8 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WelcomeDashboard from "./WelcomeDashboard.js";
-import PageHeader from "./Header/PageHeader.js";
+import PSILeaderDashboard from "./PSILeaderDashboard.js";
+import PageHeader from "./HeaderAndFooter/PageHeader.js";
 
 
 function App() {
@@ -29,8 +29,8 @@ function App() {
           />
         <Router>
           <Routes>
-              <Route path="/welcomedashboard" element={<WelcomeDashboard />} />
-              <Route path="/" element={<WelcomeDashboard />} />
+              <Route path="/welcomedashboard" element={<PSILeaderDashboard />} />
+              <Route path="/" element={<PSILeaderDashboard />} />
           </Routes>
         </Router>
       </main>

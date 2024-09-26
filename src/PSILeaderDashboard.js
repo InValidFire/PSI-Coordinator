@@ -1,8 +1,8 @@
 import React, { Component, Fragment} from "react";
 import {Link} from 'react-router-dom';
 import FieldEntry from "./Field-Entry.js";
-import styles from './PSICoordinator.module.css';
-import AppFooter from './Footer.js';
+import styles from './MainStyles.module.css';
+import AppFooter from './HeaderAndFooter/PageFooter.js';
 import {Button, Card, Container} from "react-bootstrap";
 
 {
@@ -13,7 +13,7 @@ import {Button, Card, Container} from "react-bootstrap";
      */
 }
 
-class WelcomeDashboard extends Component
+class PSILeaderDashboard extends Component
 {
     render()
     {
@@ -70,4 +70,4 @@ class WelcomeDashboard extends Component
     }
 }
 
-export default WelcomeDashboard;
+export default PSILeaderDashboard;

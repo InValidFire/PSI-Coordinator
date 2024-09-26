@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Image, Container, Row, Col } from 'react-bootstrap';
-import GGCHeaderLogo from '../GGCHeaderLogo.jpeg';
+import GGCHeaderLogo from '../AppImages/GGCHeaderLogo.jpeg';
 import styles from './PageHeader.module.css';
 
 class PageHeader extends Component
