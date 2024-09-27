@@ -1,12 +1,11 @@
 import React, { Fragment } from "react";
 import { Container, Button, Card } from "react-bootstrap";
 import './LoginPage.css';  // Regular import for global styles
-import AppFooter from './Footer.js';
+import PageFooter from "./HeaderAndFooter/PageFooter.js";
 
 const LoginPage = () => {
     return (
         <>
-
             <div className="login-section">
                 <Fragment>
                     <div className="brackets">
@@ -35,8 +34,11 @@ const LoginPage = () => {
                     </Container>
                 </Fragment>
             </div>
+            <br/>
+            <br/>
+            <br/>
 
-            <AppFooter />
+            <PageFooter />
         </>
     );
 };

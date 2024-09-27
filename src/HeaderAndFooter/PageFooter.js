@@ -2,7 +2,7 @@ import React from "react";
 import styles from '../MainStyles.module.css';
 
 
-const AppFooter = function NavBar()
+const PageFooter = function NavBar()
 {
     return (
         <footer className={styles.footerWrapper}>
@@ -13,4 +13,4 @@ const AppFooter = function NavBar()
     )
 }
 
-export default AppFooter;
+export default PageFooter;

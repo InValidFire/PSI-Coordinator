@@ -2,7 +2,7 @@ import React, { Component, Fragment} from "react";
 import {Link} from 'react-router-dom';
 import FieldEntry from "./Field-Entry.js";
 import styles from './MainStyles.module.css';
-import AppFooter from './HeaderAndFooter/PageFooter.js';
+import PageFooter from './HeaderAndFooter/PageFooter.js';
 import {Button, Card, Container} from "react-bootstrap";
 
 {
@@ -62,7 +62,7 @@ class PSILeaderDashboard extends Component
                                     </main>
                                 </div>
                             </div>
-                            <AppFooter />
+                            <PageFooter />
                         </Fragment>
                         </div>
                     </>

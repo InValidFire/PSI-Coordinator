@@ -94,6 +94,12 @@
     height: 100vh;
 }
 
+.smallContainer
+{
+    display: flex;
+    flex-direction: column;
+}
+
 .contentContainer
 {
     display: flex;
@@ -238,4 +244,60 @@
 {
     background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('AppImages/GGCBackground.jpg');
     composes: bodySettings;
+}
+
+.upload {
+    padding: 0.5rem;
+    margin: 20px 0.5rem 0.5rem;
+    display: flex;
+    flex-grow: 1;
+    border: 4px solid grey;
+    border-radius: 0.375rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    flex: 1;
+    overflow: auto;
+}
+
+.tableContainer {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.centeredTable {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.participantsHeader {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.horizontalDetails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adjust the gap between items as needed */
+    padding: 1rem; /* Add padding around the container */
+}
+
+.horizontalDetails p {
+    margin: 0;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    flex: 1 1 200px;
 }

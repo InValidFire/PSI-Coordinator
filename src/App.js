@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PSILeaderDashboard from "./PSILeaderDashboard.js";
 import PageHeader from "./HeaderAndFooter/PageHeader.js";
 import LoginPage from "./LoginPage.js";
+import SessionDetails from "./SessionDetails.js";
 
 
 function App() {
@@ -35,9 +36,10 @@ function App() {
           />
         <Router>
           <Routes>
-              <Route path="/welcomedashboard" element={<PSILeaderDashboard />} />
+              <Route path="/psileaderdashboard" element={<PSILeaderDashboard />} />
               <Route path="/" element={<PSILeaderDashboard />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/sessiondetails" element={<SessionDetails />}/>
           </Routes>
         </Router>
       </main>
