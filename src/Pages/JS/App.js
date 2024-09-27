@@ -1,11 +1,11 @@
 import "../CSS/App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PSILeaderDashboard from "../JS/PSILeaderDashboard.js";
+import PSILeaderDashboard from "./PSILeaderDashboard.js";
 import PageHeader from "../../HeaderAndFooter/PageHeader.js";
-import LoginPage from "../JS/LoginPage.js";
-import StudentDashboard from "../JS/StudentDashboard.js";
-
+import LoginPage from "./LoginPage.js";
+import StudentDashboard from "./StudentDashboard.js";
+import SessionDetails from "./SessionDetails.js";
 
 
 function App() {
@@ -37,11 +37,11 @@ function App() {
           />
         <Router>
           <Routes>
-              <Route path="/welcomedashboard" element={<PSILeaderDashboard />} />
+              <Route path="/dashboard/leader" element={<PSILeaderDashboard />} />
               <Route path="/" element={<PSILeaderDashboard />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/StudentDashboard" element={<StudentDashboard />} />
-
+              <Route path="/dashboard/leader" element={<StudentDashboard />} />
+              <Route path="/sessiondetails" element={<SessionDetails />}/>
           </Routes>
         </Router>
       </main>

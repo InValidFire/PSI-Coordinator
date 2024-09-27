@@ -5,6 +5,7 @@ import { FaBars, FaTimes } from 'react-icons/fa'; // Ensure react-icons is insta
 import styles from './PageHeader.module.css';
 
 class PageHeader extends Component {
+
     constructor(props) {
         super(props);
         this.state = {

@@ -1,52 +1,53 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Container, Button, Card } from "react-bootstrap";
-import '../CSS/LoginPage.css';  // Adjust the path based on the structure
-import AppFooter from '../../HeaderAndFooter/PageFooter.js';
+import '../CSS/LoginPage.css';  // Regular import for global styles
+import PageFooter from "../../HeaderAndFooter/PageFooter.js";
+import styles from "../CSS/MainStyles.module.css";
 
 const LoginPage = () => {
     return (
         <>
-            <div className="login-section">
-                <div className="brackets">
-                    <span className="bracket-icon">❮</span>
-                    <div className="welcome-text">
-                        <h1>Login</h1>
-                        <p>Log in with your GGC credentials<br />to access your PSI sessions, schedules, and resources</p>
-                    </div>
-                    <span className="bracket-icon">❯</span>
+            <div
+                className={styles.scrollingAdminLoginContainer}
+            >
+                <div className="login-section">
+                    <Fragment>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <Container className="form-container">
+                            <Card className="login-form">
+                                <Card.Body>
+                                    <div className="brackets">
+                                        <span className="bracket-icon">❮</span>
+                                        <div className="welcome-text">
+                                            <h1>Login</h1>
+                                            <p>Log in with your GGC credentials<br/>to access your PSI sessions,
+                                                schedules, and
+                                                resources</p>
+                                        </div>
+                                        <span className="bracket-icon">❯</span>
+                                    </div>
+                                    <form>
+                                        <input type="email" placeholder="Email" className="form-input"/>
+                                        <input type="password" placeholder="Password" className="form-input"/>
+                                        <label className="checkbox-label">
+                                            <input type="checkbox"/>
+                                            Stay Signed In
+                                        </label>
+                                        <Button type="submit" className="submit-button">Login</Button>
+                                    </form>
+                                </Card.Body>
+                            </Card>
+                        </Container>
+                    </Fragment>
                 </div>
-
-                <Container className="form-container">
-                    <Card className="login-form">
-                        <Card.Body>
-                            <form>
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    className="form-input"
-                                    aria-label="Email"
-                                    required
-                                />
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    className="form-input"
-                                    aria-label="Password"
-                                    required
-                                />
-                                <label className="checkbox-label" htmlFor="staySignedIn">
-                                    <input type="checkbox" id="staySignedIn" />
-                                    Stay Signed In
-                                </label>
-                                <Button type="submit" className="submit-button">Login</Button>
-                            </form>
-                        </Card.Body>
-                    </Card>
-                </Container>
+                <br/>
+                <br/>
+                <PageFooter/>
             </div>
-            <AppFooter />
         </>
     );
 };
-
 export default LoginPage;
