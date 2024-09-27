@@ -103,7 +103,7 @@ export default SessionDetails;*/
 import React, { Component, Fragment } from "react";
 import {Table, Container, Button, Card} from "react-bootstrap";
 import styles from "./MainStyles.module.css";
-import PageFooter from './HeaderAndFooter/PageFooter.js';
+import PageFooter from '../../HeaderAndFooter/PageFooter.js';
 
 class SessionDetails extends Component {
     render() {

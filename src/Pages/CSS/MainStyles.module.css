@@ -1,114 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Fugaz+One");
 @import url("https://fonts.googleapis.com/css?family=Poppins");
 
-.left
-{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.resultLink
-{
-    text-decoration: none;
-}
-
-.appHeader
-{
-    width: 100%;
-    background-image: linear-gradient(to right, white 45%, darkgreen);
-    font-family: "Fugaz One", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo
-{
-    margin: 60px;
-    width: 150px;
-    height: 130px;
-}
-
-.logoImg
-{
-    width: 75%;
-    height: auto;
-}
-
-.pageTitleIdentifier
-{
-    font-weight: bold;
-    color: black;
-    margin: 30px;
-    font-size: 1.25rem;
-}
-
-.collapsibleNav
-{
-    justify-content: flex-end;
-}
-
-.navbar
-{
-    align-items: center;
-    gap: 3rem;
-    display: flex;
-    font-size: 1.75rem;
-    margin: 15px 30px 15px 15px;
-}
-
-.navbarLinks
-{
-    color: black;
-    font-weight: bold;
-    position: relative;
-    text-decoration: none;
-    font-size: 1.65rem;
-}
-
-.navbarLinks::after
-{
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    background-color: darkgreen;
-    transform-origin: bottom right;
-    transition: transform 0.4s ease-out;
-}
-
-.navbarLinks:hover::after
-{
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-.container
-{
+/* Container that holds all content */
+.container {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    padding: 0 1rem; /* Add padding for smaller screens */
 }
 
-.smallContainer
-{
-    display: flex;
-    flex-direction: column;
-}
-
-.contentContainer
-{
+/* Content wrapper for scrolling */
+.contentContainer {
     display: flex;
     flex: 1;
     overflow: auto;
 }
 
-.mainContent
-{
+/* Main content styling */
+.mainContent {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -116,26 +25,27 @@
     overflow-y: auto;
 }
 
-.scrollableContent
-{
+/* Scrollable content within the main area */
+.scrollableContent {
     flex: 1;
     overflow-y: auto;
     padding: 1em;
 }
 
-.formSection
-{
+/* Form section for different screen sizes */
+.formSection {
     border: 2px solid black;
     border-radius: 15px;
     max-width: 25cm;
     min-width: fit-content;
-    margin: 80px auto 40px;
+    margin: 40px auto;
     font-family: 'Poppins', sans-serif;
     background-color: #ffffff;
+    padding: 20px;
 }
 
-.formSectionTitle
-{
+/* Form section title styling */
+.formSectionTitle {
     text-align: center;
     font-size: 1.7rem;
     padding: 20px;
@@ -146,27 +56,27 @@
     border-top-right-radius: 15px;
 }
 
-.formData
-{
+/* Form data padding */
+.formData {
     padding: 15px;
 }
 
-.formEntry
-{
+/* Entry styling for form elements */
+.formEntry {
     margin-bottom: 25px;
     text-align: left;
     font-family: 'Poppins', sans-serif;
 }
 
-.formEntryName
-{
+/* Form entry name styling */
+.formEntryName {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-.formEntryData
-{
+/* Form entry data styling */
+.formEntryData {
     max-width: 95%;
     min-width: 93%;
     border: 2px solid black;
@@ -175,26 +85,8 @@
     font-size: 1.25rem;
 }
 
-.footerWrapper
-{
-    background-color: darkgreen;
-    font-family: "Poppins", sans-serif;
-    font-style: italic;
-    color: white;
-    text-align: center;
-    height: 70px;
-    top: 0%;
-    bottom: 0%;
-}
-
-.footerText
-{
-    padding-top: 20px;
-    font-weight: lighter;
-}
-
-.fillFormButton
-{
+/* Button styling */
+.fillFormButton {
     width: fit-content;
     height: 50px;
     background-color: darkgreen;
@@ -204,35 +96,42 @@
     border-radius: 10px;
     border: 3px solid black;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.formSectionHeadings
-{
-    text-align: center
+.fillFormButton:hover {
+    background-color: limegreen;
+    color: black;
 }
 
-.formContainer
-{
+/* Form section heading alignment */
+.formSectionHeadings {
+    text-align: center;
+}
+
+/* Form container for larger screens */
+.formContainer {
     width: 60%;
     margin: auto;
     text-align: left;
     color: white;
 }
 
-.validationErrHeading
-{
+/* Error message heading styling */
+.validationErrHeading {
     text-align: center;
     font-size: 1.3rem;
     font-weight: bold;
 }
 
-.validationErrAlert
-{
+/* Error message alert box */
+.validationErrAlert {
     text-align: left;
     margin: auto;
     width: 50%;
 }
 
+/* Background image and layout */
 .bodySettings {
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -240,9 +139,9 @@
     background-size: cover;
 }
 
-.scrollingAdminLoginContainer
-{
-    background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('AppImages/GGCBackground.jpg');
+/* Admin login container styling */
+.scrollingAdminLoginContainer {
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('../../AppImages/GGCBackground.jpg');
     composes: bodySettings;
 }
 
@@ -300,4 +199,38 @@
     border-radius: 4px;
     background-color: #f9f9f9;
     flex: 1 1 200px;
+}
+
+/* Responsive design for mobile screens */
+@media (max-width: 768px) {
+    .formSection {
+        max-width: 100%; /* Make form section fit smaller screens */
+        padding: 15px;
+        margin: 20px auto; /* Adjust margin for smaller devices */
+    }
+
+    .formSectionTitle {
+        font-size: 1.4rem; /* Slightly reduce title font size */
+        padding: 15px;
+    }
+
+    .formEntryName, .formEntryData {
+        text-align: left;
+        font-size: 1rem; /* Adjust text size for mobile view */
+    }
+
+    .fillFormButton {
+        width: 100%; /* Make buttons responsive */
+        height: 45px;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        padding: 0 0.5rem; /* Add more padding for smaller screens */
+    }
+
+    .validationErrAlert {
+        width: 80%; /* Adjust validation error width */
+    }
 }
