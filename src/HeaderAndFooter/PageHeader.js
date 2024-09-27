@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Image } from 'react-bootstrap';
-import GGCHeaderLogo from '../GGCHeaderLogo.jpeg';
+import GGCHeaderLogo from '../AppImages/GGCHeaderLogo.jpeg';
 import { FaBars, FaTimes } from 'react-icons/fa'; // Ensure react-icons is installed
 import styles from './PageHeader.module.css';
 

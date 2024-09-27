@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Card } from "react-bootstrap";
 import '../CSS/LoginPage.css';  // Adjust the path based on the structure
-import AppFooter from '../../HeaderAndFooter/PageFooter.js';
+import PageFooter from '../../HeaderAndFooter/PageFooter.js';
 
 const LoginPage = () => {
     return (
@@ -44,7 +44,7 @@ const LoginPage = () => {
                     </Card>
                 </Container>
             </div>
-            <AppFooter />
+            <PageFooter />
         </>
     );
 };

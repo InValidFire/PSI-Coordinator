@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from 'react-router-dom';
 import FieldEntry from "../../Field-Entry.js";
 import styles from '../CSS/MainStyles.module.css'; // Ensure this path is correct for your CSS
-import AppFooter from '../../HeaderAndFooter/PageFooter.js';
+import PageFooter from '../../HeaderAndFooter/PageFooter.js';
 import { Button, Card, Container } from "react-bootstrap";
 
 const StudentDashboard = () => {
@@ -38,7 +38,7 @@ const StudentDashboard = () => {
                             </main>
                         </div>
                     </div>
-                    <AppFooter />
+                    <PageFooter />
                 </Fragment>
             </div>
         </>
