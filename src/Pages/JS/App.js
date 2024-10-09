@@ -6,6 +6,7 @@ import PageHeader from "../../HeaderAndFooter/PageHeader.js";
 import LoginPage from "./LoginPage.js";
 import StudentDashboard from "./StudentDashboard.js";
 import SessionDetails from "./SessionDetails.js";
+import CreateAccount from "./CreateAccount.js";
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/dashboard/leader" element={<StudentDashboard />} />
               <Route path="/sessiondetails" element={<SessionDetails />}/>
+              <Route path={"/create/session"} element={<SessionDetails/>}/>
+              <Route path="/create/account" element={<CreateAccount/>}/>
           </Routes>
         </Router>
       </main>
