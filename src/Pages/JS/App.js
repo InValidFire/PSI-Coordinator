@@ -40,7 +40,7 @@ function App() {
               <Route path="/dashboard/leader" element={<PSILeaderDashboard />} />
               <Route path="/" element={<PSILeaderDashboard />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/dashboard/leader" element={<StudentDashboard />} />
+              <Route path="/dashboard/student" element={<StudentDashboard />} />
               <Route path="/sessiondetails" element={<SessionDetails />}/>
           </Routes>
         </Router>
