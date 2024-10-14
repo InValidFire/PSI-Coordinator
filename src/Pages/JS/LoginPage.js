@@ -3,6 +3,7 @@ import { Container, Button, Card } from "react-bootstrap";
 import '../CSS/LoginPage.css';  // Regular import for global styles
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
+import {Link} from "react-router-dom";
 
 const LoginPage = () => {
     return (
@@ -37,7 +38,9 @@ const LoginPage = () => {
                                             Stay Signed In
                                         </label>
                                         <Button type="submit" className="submit-button">Login</Button>
-                                    </form>
+                                        <Link to="/forgot-password" className="forgot-password-link">
+                                            Forgot password?
+                                        </Link>                                    </form>
                                 </Card.Body>
                             </Card>
                         </Container>

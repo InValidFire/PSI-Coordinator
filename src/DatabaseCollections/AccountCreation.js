@@ -18,7 +18,7 @@ export const signup = async (
         .createUserWithEmailAndPassword(email, password);
     await resp.user.updateProfile({ displayName: `${firstName} ${lastName}` });
     const name = [firstName, lastName];
-    var userid = resp.user.uid;
+    const userid = resp.user.uid;
     if (role === "psi") {
         addDoc(accountsCollectionRef, {
             id: userid,
