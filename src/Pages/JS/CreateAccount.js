@@ -5,6 +5,7 @@ import Input from "../JS COMPONENTS/Input.js";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import "../CSS/LoginPage.css";
 import styles from "../CSS/MainStyles.module.css";
+import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 
 function CreateAccount() {
     const [values, setValues] = useState({
@@ -74,6 +75,15 @@ function CreateAccount() {
     return (
         <>
             <div className={styles.scrollingAdminLoginContainer}>
+                <AppHeader
+                    pageTitle="CREATE ACCOUNT"
+                    headerContents={[
+                        {
+                            "text": "LOGIN",
+                            "link": "/"
+                        }
+                    ]}
+                />
                 <div className="login-section">
                     <Fragment>
                         <br />

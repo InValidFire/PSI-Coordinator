@@ -2,11 +2,25 @@ import React, { Component, Fragment } from "react";
 import {Table, Container, Button, Card} from "react-bootstrap";
 import styles from "../CSS/MainStyles.module.css";
 import PageFooter from '../../HeaderAndFooter/PageFooter.js';
+import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 
 class SessionDetails extends Component {
     render() {
         return (
             <>
+                <AppHeader
+                    pageTitle="SESSION DETAILS"
+                    headerContents={[
+                        {
+                            "text": "BACK TO DASHBOARD",
+                            "link": "/dashboard/leader"
+                        },
+                        {
+                            "text": "LOGOUT",
+                            "link": "/"
+                        }
+                    ]}
+                />
             <Fragment className={styles.container}>
                 <div className={styles.header}>
                     <h1>Session Details

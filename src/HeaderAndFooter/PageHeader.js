@@ -10,6 +10,7 @@ class PageHeader extends Component {
         super(props);
         this.state = {
             pageTitle: props.pageTitle,
+            headerContents: props.headerContents,
             isNavOpen: false, // State to manage the dropdown visibility
         };
     }
@@ -48,16 +49,37 @@ class PageHeader extends Component {
                         <div className={styles.closeButton} onClick={this.closeNav}>
                             <FaTimes />
                         </div>
-                        {this.props.navBarContents.map((item, index) => (
+                        {/*{this.props.navBarContents.map((item, index) => (
                             <Nav.Link key={index} href={item.link} className={styles.navbarLinks}>
                                 {item.text}
                             </Nav.Link>
-                        ))}
+                        ))}*/}
+
+                        {
+                            this.state.headerContents.map((clickable) => (
+                                <HeaderContents
+                                    key={clickable.text}
+                                    link={clickable.link}
+                                    text={clickable.text}
+                                />
+                            ))
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
         );
     }
+}
+
+const HeaderContents = function headerContents(props)
+{
+    return (
+        <Nav.Link href={props.link} style={{textDecoration: 'none'}}>
+            <div className={styles.navbarLinks}>
+                {props.text}
+            </div>
+        </Nav.Link>
+    )
 }
 
 export default PageHeader;

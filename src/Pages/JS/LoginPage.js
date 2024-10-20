@@ -4,6 +4,7 @@ import '../CSS/LoginPage.css';  // Regular import for global styles
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
 import {Link} from "react-router-dom";
+import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 
 const LoginPage = () => {
     return (
@@ -11,6 +12,15 @@ const LoginPage = () => {
             <div
                 className={styles.scrollingAdminLoginContainer}
             >
+                <AppHeader
+                    pageTitle="LOGIN"
+                    headerContents={[
+                        {
+                            "text": "ADMIN LOGIN",
+                            "link": "/create/account" /* Change link to be admin login page*/
+                        }
+                    ]}
+                />
                 <div className="login-section">
                     <Fragment>
                         <br/>

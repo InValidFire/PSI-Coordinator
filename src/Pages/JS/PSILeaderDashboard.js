@@ -4,14 +4,7 @@ import FieldEntry from "../../Field-Entry.js";
 import styles from '../CSS/MainStyles.module.css';
 import {Button, Card, Container} from "react-bootstrap";
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
-
-{
-    /*
-    Create two links at the top of the page:
-    Go to Student Dashboard
-    Add New PSI Session
-     */
-}
+import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 
 class PSILeaderDashboard extends Component
 {
@@ -22,6 +15,23 @@ class PSILeaderDashboard extends Component
                     <div
                         className={styles.scrollingAdminLoginContainer}
                     >
+                        <AppHeader
+                            pageTitle="PSI LEADER DASHBOARD"
+                            headerContents={[
+                                {
+                                  "text": "STUDENT DASHBOARD",
+                                  "link": "/dashboard/student"
+                                },
+                                {
+                                    "text": "CREATE NEW SESSION",
+                                    "link": "/create/session"
+                                },
+                                {
+                                    "text": "LOGOUT",
+                                    "link": "/"
+                                }
+                            ]}
+                        />
                         <Fragment>
                             <div className={styles.container}>
                                 <div className={styles.contentContainer}>
@@ -39,13 +49,13 @@ class PSILeaderDashboard extends Component
                                                     For now I will use a button so the user can view session details
                                                     */}
                                                     <FieldEntry entryName={"Monday"} entryValue={"12:00PM-1:00PM"}/>
-                                                    <Link to="/ViewSession">
+                                                    <Link to="/create/session">
                                                         <button className={styles.fillFormButton}>
                                                             View Session Details
                                                         </button>
                                                     </Link>
                                                     <FieldEntry entryName={"Wednesday"} entryValue={"12:00PM-1:00PM"}/>
-                                                    <Link to="/ViewSession">
+                                                    <Link to="/create/session">
                                                         <button className={styles.fillFormButton}>
                                                             View Session Details
                                                         </button>
