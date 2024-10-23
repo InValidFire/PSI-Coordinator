@@ -10,12 +10,12 @@ export const signup = async (
     lastName,
     email,
     role,
-    password,
+    pass,
     classPSI
 ) => {
     const resp = await firebase
         .auth()
-        .createUserWithEmailAndPassword(email, password);
+        .createUserWithEmailAndPassword(email, pass);
     await resp.user.updateProfile({ displayName: `${firstName} ${lastName}` });
     const name = [firstName, lastName];
     const userid = resp.user.uid;

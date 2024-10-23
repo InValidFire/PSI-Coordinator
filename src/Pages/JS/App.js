@@ -12,30 +12,6 @@ import CreateAccount from "./CreateAccount.js";
 function App() {
   return (
       <main className="App">
-          {/*<PageHeader
-              pageTitle=
-                  {
-                      "PSI Coordinator"
-                  }
-              headerContents=
-                  {
-                      [
-                          {
-                              'text': "LOGOUT",
-                              'link': "Logout"
-                          },
-                          {
-                              'text': "LOGIN",
-                              'link': "Login"
-                          },
-                          {
-                              'text' : "ADD SCHEDULE",
-                              'link': "/addPSISchedule"
-                          }
-
-                      ]
-                  }
-          />*/}
         <Router>
           <Routes>
               <Route path="/dashboard/leader" element={<PSILeaderDashboard />} />

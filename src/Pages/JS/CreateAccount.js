@@ -63,10 +63,10 @@ function CreateAccount() {
 
         setErrorMessage("");
         setSubmitButtonDisabled(true);
-        signup(values.firstName, values.lastName, values.email, values.pass, values.role, values.classPSI);
+        signup(values.firstName, values.lastName, values.email, values.pass, values.role, values.classPSI).then(r => "");
 
         if (values.role === "student") {
-            navigate("/sessionSignUp");
+            navigate("/session/signup");
         } else if (values.role === "psi") {
             navigate("/login");
         }
