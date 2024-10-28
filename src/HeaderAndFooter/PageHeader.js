@@ -48,12 +48,6 @@ class PageHeader extends Component {
                         <div className={styles.closeButton} onClick={this.closeNav}>
                             <FaTimes />
                         </div>
-                        {/*{this.props.navBarContents.map((item, index) => (
-                            <Nav.Link key={index} href={item.link} className={styles.navbarLinks}>
-                                {item.text}
-                            </Nav.Link>
-                        ))}*/}
-
                         {
                             this.state.headerContents.map((clickable) => (
                                 <HeaderContents

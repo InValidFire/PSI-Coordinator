@@ -68,10 +68,10 @@ const LoginPage = () => {
                 />
                 <div className="login-section">
                     <Fragment>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                         <Container className="form-container">
                             <Card className="login-form">
                                 <Card.Body>
@@ -79,9 +79,7 @@ const LoginPage = () => {
                                         <span className="bracket-icon">❮</span>
                                         <div className="welcome-text">
                                             <h1>Login</h1>
-                                            <p>Log in with your GGC credentials<br/>to access your PSI sessions,
-                                                schedules, and
-                                                resources</p>
+                                            <p>Log in with your GGC credentials<br />to access your PSI sessions, schedules, and resources</p>
                                         </div>
                                         <span className="bracket-icon">❯</span>
                                     </div>
@@ -103,7 +101,7 @@ const LoginPage = () => {
                                             }
                                         />
                                         <label className="checkbox-label">
-                                            <input type="checkbox"/>
+                                            <input type="checkbox" />
                                             Stay Signed In
                                         </label>
                                         {/*<Button type="submit" className="submit-button">Login</Button>*/}
@@ -116,6 +114,9 @@ const LoginPage = () => {
                                         >
                                             Login
                                         </Button>
+                                        <Link to="/create/account">
+                                            Sign Up
+                                        </Link><br/>
                                         <Link to="/forgot-password" className="forgot-password-link">
                                             Forgot password?
                                         </Link>
@@ -125,11 +126,12 @@ const LoginPage = () => {
                         </Container>
                     </Fragment>
                 </div>
-                <br/>
-                <br/>
-                <PageFooter/>
+                <br />
+                <br />
+                <PageFooter />
             </div>
         </>
     );
 };
+
 export default LoginPage;
