@@ -117,12 +117,17 @@ code {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adjust this value to control the spacing */
 }
 
 .login-form button:hover {
     background-color: limegreen;
 }
+
+
 
 /* Media Queries for Mobile */
 /* Adjusts styles for mobile devices to ensure a responsive design. */

@@ -3,20 +3,18 @@ import { Container, Button, Card } from "react-bootstrap";
 import '../CSS/LoginPage.css';  // Regular import for global styles
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
     return (
         <>
-            <div
-                className={styles.scrollingAdminLoginContainer}
-            >
+            <div className={styles.scrollingAdminLoginContainer}>
                 <div className="login-section">
                     <Fragment>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                         <Container className="form-container">
                             <Card className="login-form">
                                 <Card.Body>
@@ -24,33 +22,38 @@ const LoginPage = () => {
                                         <span className="bracket-icon">❮</span>
                                         <div className="welcome-text">
                                             <h1>Login</h1>
-                                            <p>Log in with your GGC credentials<br/>to access your PSI sessions,
-                                                schedules, and
-                                                resources</p>
+                                            <p>Log in with your GGC credentials<br />to access your PSI sessions, schedules, and resources</p>
                                         </div>
                                         <span className="bracket-icon">❯</span>
                                     </div>
                                     <form>
-                                        <input type="email" placeholder="Email" className="form-input"/>
-                                        <input type="password" placeholder="Password" className="form-input"/>
+                                        <input type="email" placeholder="Email" className="form-input" />
+                                        <input type="password" placeholder="Password" className="form-input" />
                                         <label className="checkbox-label">
-                                            <input type="checkbox"/>
+                                            <input type="checkbox" />
                                             Stay Signed In
                                         </label>
-                                        <Button type="submit" className="submit-button">Login</Button>
+                                        <div className="button-group">
+                                            <Button type="submit" className="submit-button">Login</Button>
+                                            <Link to="/create/account">
+                                                <Button className="submit-button">Sign Up</Button>
+                                            </Link>
+                                        </div>
                                         <Link to="/forgot-password" className="forgot-password-link">
                                             Forgot password?
-                                        </Link>                                    </form>
+                                        </Link>
+                                    </form>
                                 </Card.Body>
                             </Card>
                         </Container>
                     </Fragment>
                 </div>
-                <br/>
-                <br/>
-                <PageFooter/>
+                <br />
+                <br />
+                <PageFooter />
             </div>
         </>
     );
 };
+
 export default LoginPage;

@@ -49,7 +49,12 @@ class PageHeader extends Component {
                             <FaTimes />
                         </div>
                         {this.props.navBarContents.map((item, index) => (
-                            <Nav.Link key={index} href={item.link} className={styles.navbarLinks}>
+                            <Nav.Link
+                                key={index}
+                                href={item.link}
+                                className={styles.navbarLinks}
+                                onClick={item.onClick ? item.onClick : null}
+                            >
                                 {item.text}
                             </Nav.Link>
                         ))}
