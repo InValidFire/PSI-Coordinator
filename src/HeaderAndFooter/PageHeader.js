@@ -40,7 +40,6 @@ class PageHeader extends Component {
                     <FaBars />
                 </div>
 
-                {/* Overlay for Grey Background */}
                 <div className={`${styles.overlay} ${this.state.isNavOpen ? styles.show : ''}`} onClick={this.closeNav}></div>
 
                 {/* Navbar Content */}

@@ -3,6 +3,7 @@ import {Table, Container, Button, Card} from "react-bootstrap";
 import styles from "../CSS/MainStyles.module.css";
 import PageFooter from '../../HeaderAndFooter/PageFooter.js';
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
+import {useParams} from "react-router-dom";
 
 class SessionDetails extends Component {
     render() {
@@ -17,7 +18,7 @@ class SessionDetails extends Component {
                         },
                         {
                             "text": "LOGOUT",
-                            "link": "/"
+                            "link": "/login"
                         }
                     ]}
                 />
@@ -34,30 +35,6 @@ class SessionDetails extends Component {
                     </h1>
                 </div>
                 <div className={styles.mainContent}>
-                    {/*<Table className={styles.centeredTable}>
-                            <thead>
-                            <tr>
-                                <th>PSI Coordinator:</th>
-                                <th>Session Topic:</th>
-                                <th>Class Course Name:</th>
-                                <th>Class Course Number:</th>
-                                <th>Day?</th>
-                                <th>Time?</th>
-                                <th>Where?</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Bronwen K.</td>
-                                <td>Finding Constants</td>
-                                <td>Calculus</td>
-                                <td>1111</td>
-                                <td>Monday</td>
-                                <td>3:00PM-4:00PM</td>
-                                <td>B-1800</td>
-                            </tr>
-                            </tbody>
-                        </Table>*/}
                     <div className={styles.horizontalDetails}>
                         <p><strong>PSI Coordinator:</strong> Bronwen K.</p>
                         <p><strong>Session Topic:</strong> Finding Constants</p>

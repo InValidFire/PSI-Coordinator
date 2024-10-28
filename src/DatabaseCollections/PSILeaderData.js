@@ -2,6 +2,7 @@ import { db } from "../config.js";
 import {
     collection,
     getDocs,
+    getDoc,
     addDoc,
     deleteDoc,
     doc,
@@ -18,7 +19,7 @@ export const createLeader = async (leaderName, leaderEmail) => {
 };
 
 export const deleteLeader = async (id) => {
-    const leaderDoc = doc(db, "students", id);
+    const leaderDoc = doc(db, "psileaders", id);
     await deleteDoc(leaderDoc);
 };
 
@@ -36,7 +37,3 @@ export const readLeaders = async () => {
 
     return list;
 };
-
-
-
-

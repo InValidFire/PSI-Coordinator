@@ -10,19 +10,20 @@ import CreateAccount from "./CreateAccount.js";
 
 
 function App() {
-  return (
-      <main className="App">
-        <Router>
-          <Routes>
-              <Route path="/dashboard/leader" element={<PSILeaderDashboard />} />
-              <Route path="/" element={<LoginPage />} />
-              <Route path="/dashboard/student" element={<StudentDashboard />} />
-              <Route path="/sessiondetails" element={<SessionDetails />}/>
-              <Route path={"/create/session"} element={<SessionDetails/>}/>
-              <Route path="/create/account" element={<CreateAccount/>}/>
-          </Routes>
-        </Router>
-      </main>
-  );
+    return (
+        <main className="App">
+            <Router>
+                <Routes>
+                    <Route path="/dashboard/leader/:id" element={<PSILeaderDashboard />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/dashboard/student" element={<StudentDashboard />} />
+                    <Route path="/sessiondetails/:id" element={<SessionDetails />}/> {/* Dynamic route for session details using :id */}
+                    <Route path="/create/session" element={<SessionDetails/>}/>
+                    <Route path="/create/account" element={<CreateAccount/>}/>
+                </Routes>
+            </Router>
+        </main>
+    );
 }
+
 export default App;

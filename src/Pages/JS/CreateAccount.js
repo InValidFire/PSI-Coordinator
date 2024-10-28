@@ -6,6 +6,7 @@ import { Button, Card, Container, Form } from "react-bootstrap";
 import "../CSS/LoginPage.css";
 import styles from "../CSS/MainStyles.module.css";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
+import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 
 function CreateAccount() {
     const [values, setValues] = useState({
@@ -52,10 +53,10 @@ function CreateAccount() {
             setErrorMessage("Passwords are not a match. Please try again.");
             return;
         }
-        if (values.pass.length < 6) {
-            setErrorMessage("Password must be 6 characters or longer.");
-            return;
-        }
+        /*if (values.pass.length < 6) {
+                setErrorMessage("Password must be 6 characters or longer and must contain a number.");
+                return;
+            }*/
         if (values.role === "psi" && !values.classPSI) {
             setErrorMessage("All PSI Leaders must have an assigned class.");
             return;
@@ -63,12 +64,18 @@ function CreateAccount() {
 
         setErrorMessage("");
         setSubmitButtonDisabled(true);
-        signup(values.firstName, values.lastName, values.email, values.pass, values.role, values.classPSI).then(r => "");
 
-        if (values.role === "student") {
-            navigate("/session/signup");
-        } else if (values.role === "psi") {
-            navigate("/login");
+        try {
+            signup(values.firstName, values.lastName, values.email, values.pass, values.role, values.classPSI).then(r => "");
+            if (values.role === "student") {
+                navigate("/session/signup");
+            } else if (values.role === "psi") {
+                navigate("/login");
+            }
+        } catch (error) {
+            if (error.code === "auth/weak-password") {
+                setErrorMessage("Password is too weak. Please enter at least 6 characters.");
+            }
         }
     };
 
@@ -80,7 +87,7 @@ function CreateAccount() {
                     headerContents={[
                         {
                             "text": "LOGIN",
-                            "link": "/"
+                            "link": "/login"
                         }
                     ]}
                 />
@@ -109,14 +116,14 @@ function CreateAccount() {
                                             label="First Name"
                                             placeholder="Please enter your first name"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, firstName: event.target.value }))
+                                                setValues((prev) => ({...prev, firstName: event.target.value}))
                                             }
                                         />
                                         <Input
                                             label="Last Name"
                                             placeholder="Please enter your last name"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, lastName: event.target.value }))
+                                                setValues((prev) => ({...prev, lastName: event.target.value}))
                                             }
                                         />
                                         <Input
@@ -124,7 +131,7 @@ function CreateAccount() {
                                             label="GGC Email"
                                             placeholder="Enter email address"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, email: event.target.value }))
+                                                setValues((prev) => ({...prev, email: event.target.value}))
                                             }
                                         />
                                         <Input
@@ -132,7 +139,7 @@ function CreateAccount() {
                                             label="Password"
                                             placeholder="Enter password"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, pass: event.target.value }))
+                                                setValues((prev) => ({...prev, pass: event.target.value}))
                                             }
                                         />
                                         <Input
@@ -140,7 +147,7 @@ function CreateAccount() {
                                             label="Confirm"
                                             placeholder="Confirm password"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, confirm: event.target.value }))
+                                                setValues((prev) => ({...prev, confirm: event.target.value}))
                                             }
                                         />
                                         <p className="text">Are you a PSI Leader?</p>
@@ -150,7 +157,7 @@ function CreateAccount() {
                                             value="student"
                                             name="stuOrPSI"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, role: event.target.value }))
+                                                setValues((prev) => ({...prev, role: event.target.value}))
                                             }
                                             onClick={handleOn}
                                         />
@@ -160,11 +167,11 @@ function CreateAccount() {
                                             value="psi"
                                             name="stuOrPSI"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, role: event.target.value }))
+                                                setValues((prev) => ({...prev, role: event.target.value}))
                                             }
                                             onClick={handleOff}
                                         />
-                                        <div className="toggle" style={{ display: "none" }}>
+                                        {/*<div className="toggle" style={{ display: "none" }}>
                                             <Input
                                                 label="Class Given for PSI"
                                                 placeholder="Please select your class"
@@ -172,16 +179,43 @@ function CreateAccount() {
                                                     setValues((prev) => ({ ...prev, classPSI: event.target.value }))
                                                 }
                                             />
+                                        </div>*/}
+                                        <div className="toggle" style={{display: "none"}}>
+                                            <Form.Group controlId="formSelect">
+                                                <Form.Label>Classes Available for PSI</Form.Label>
+                                                <Form.Select
+                                                    aria-label="Select class session"
+                                                    className={styles.formControl}
+                                                    onChange={(event) =>
+                                                        setValues((prev) => ({...prev, classPSI: event.target.value}))
+                                                    }
+                                                >
+                                                    <option value="">Select your class</option>
+                                                    <option value="ACCT 2101 - Intro to Financial Accounting">Intro to Financial Accounting</option>
+                                                    <option value="BIOL 1107K - Principles of Biology I">Principles of Biology I</option>
+                                                    <option value="BIOL 1108K - Principles of Biology II">Principles of Biology II</option>
+                                                    <option value="BIOL 2251K - Human Anatomy and Physiology I">Human Anatomy and Physiology I</option>
+                                                    <option value="CHEM 1211K - Principles of Chemistry I">Principles of Chemistry I</option>
+                                                    <option value="CHEM 1212K - Principles of Chemistry II">Principles of Chemistry II</option>
+                                                    <option value="CHEM 2211K - Organic Chemistry">Organic Chemistry</option>
+                                                    <option value="ITEC 2140 - Programming Fundamentals">Programming Fundamentals</option>
+                                                    <option value="ITEC 2150 - Intermediate Programming">Intermediate Programming</option>
+                                                    <option value="MATH 2200 - Calculus I">Calculus I</option>
+                                                    {/* Add more sessions as needed */}
+                                                </Form.Select>
+                                            </Form.Group>
                                         </div>
+                                        <br />
+                                        <br />
                                         <Button
                                             onClick={handleAccount}
                                             disabled={submitButtonDisabled}
-                                            style={{ margin: "auto" }}
+                                            style={{margin: "auto"}}
                                         >
                                             Create Account
                                         </Button>
 
-                                        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+                                        {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                                     </Form>
                                 </Card.Body>
                             </Card>
@@ -189,6 +223,7 @@ function CreateAccount() {
                     </Fragment>
                 </div>
             </div>
+            <PageFooter />
         </>
     );
 }
