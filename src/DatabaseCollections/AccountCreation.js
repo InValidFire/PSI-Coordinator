@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { db } from "../config.js";
-import { collection, addDoc } from "firebase/firestore";
+import {collection, addDoc, getDocs} from "firebase/firestore";
 
 const accountsCollectionRef = collection(db, "users");
 
@@ -9,8 +9,8 @@ export const signup = async (
     firstName,
     lastName,
     email,
-    role,
     password,
+    role,
     classPSI
 ) => {
     const resp = await firebase
@@ -46,4 +46,16 @@ export const login = async (email, password) => {
         .auth()
         .signInWithEmailAndPassword(email, password);
     return resp.user;
+};
+
+export const verification = async (email) => {
+    const data = await getDocs(accountsCollectionRef);
+    const psileaders = data.docs.map((doc) => doc.data());
+
+    const leader = psileaders.find((leader) => leader.email === email);
+
+    if (leader)
+        return leader.verified === true;
+    else
+        return false;
 };

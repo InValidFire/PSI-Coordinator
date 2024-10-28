@@ -40,21 +40,21 @@ function App() {
     return (
         <Router>
             <main className="App">
-                <PageHeader
+                {/*<PageHeader
                     pageTitle="PSI Coordinator"
-                    navBarContents={[
+                    headerContents={[
                         isLoggedIn
                             ? { text: "LOGOUT", link: "/", onClick: handleLogout } // Display "LOGOUT" if logged in
                             : { text: "LOGIN", link: "/login" }, // Display "LOGIN" if not logged in
                         { text: "ADD SCHEDULE", link: "/addPSISchedule" },
                     ]}
-                />
+                />*/}
                 <Routes>
-                    <Route path="/dashboard/leader" element={<PSILeaderDashboard />} />
+                    <Route path="/dashboard/leader/:id" element={<PSILeaderDashboard />} />
                     <Route path="/" element={<PSILeaderDashboard />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/dashboard/student" element={<StudentDashboard />} />
-                    <Route path="/sessiondetails" element={<SessionDetails />} />
+                    <Route path="/sessiondetails/:id" element={<SessionDetails />} />
                     <Route path="/create/session" element={<SessionDetails />} />
                     <Route path="/create/account" element={<CreateAccount />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />

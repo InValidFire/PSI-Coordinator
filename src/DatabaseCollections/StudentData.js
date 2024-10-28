@@ -10,10 +10,11 @@ import {
 //get references of collections named 'students'
 const studentsCollectionRef = collection(db, "students");
 
-export const createStudent = async (studentName, studentEmail) => {
+export const createStudent = async (studentName, studentEmail, session) => {
     await addDoc(studentsCollectionRef, {
         name: studentName,
         email: studentEmail,
+        session: session,
     });
 };
 
@@ -31,6 +32,7 @@ export const readStudents = async () => {
         list.push({
             name: student.name,
             email: student.email,
+            session: session,
         });
     });
 
