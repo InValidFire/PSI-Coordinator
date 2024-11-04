@@ -2,13 +2,13 @@ import "../CSS/App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import PSILeaderDashboard from "./PSILeaderDashboard.js";
-import PageHeader from "../../HeaderAndFooter/PageHeader.js";
 import LoginPage from "./LoginPage.js";
 import StudentDashboard from "./StudentDashboard.js";
-import SessionDetails from "./SessionDetails.js";
 import CreateAccount from "./CreateAccount.js";
 import ForgotPassword from "./ForgotPassword.js";
+import DashboardID from "../JS COMPONENTS/PSIDashboardID.js";
+import SessionDashboardID from "../JS COMPONENTS/SessionDetailsDashboardID.js";
+import CreateSession from "./CreateSession.js";
 
 function App() {
     console.log("App component rendered");
@@ -50,12 +50,13 @@ function App() {
                     ]}
                 />*/}
                 <Routes>
-                    <Route path="/dashboard/leader/:id" element={<PSILeaderDashboard />} />
-                    <Route path="/" element={<PSILeaderDashboard />} />
+                    {/*<Route path="/dashboard/leader/:id" element={<PSILeaderDashboard />} />*/}
+                    <Route path="/dashboard/leader/:id" element={<DashboardID />} />
+                    <Route path="/" element={<LoginPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/dashboard/student" element={<StudentDashboard />} />
-                    <Route path="/sessiondetails/:id" element={<SessionDetails />} />
-                    <Route path="/create/session" element={<SessionDetails />} />
+                    <Route path="/sessiondetails/:id1/:id2" element={<SessionDashboardID />} />
+                    <Route path="/create/session/:id" element={<CreateSession />} />
                     <Route path="/create/account" element={<CreateAccount />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                 </Routes>

@@ -2,10 +2,10 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import FieldEntry from "../../Field-Entry.js";
 import styles from '../CSS/MainStyles.module.css';
-import { Button, Card, Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
-import { readSessions } from "../../DatabaseCollections/PSISessionData.js";  // Import the readSessions function
+import { readSessions } from "../../DatabaseCollections/PSISessionData.js";
 
 class PSILeaderDashboard extends Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class PSILeaderDashboard extends Component {
                             },
                             {
                                 text: "CREATE NEW SESSION",
-                                link: "/create/session"
+                                link: `/create/session/${this.props.id}`
                             },
                             {
                                 text: "LOGOUT",
@@ -71,7 +71,7 @@ class PSILeaderDashboard extends Component {
                                                     sessions.map((session) => (
                                                         <div key={session.id}>
                                                             <FieldEntry entryName={session.day} entryValue={`${session.time} - ${session.classname}`} />
-                                                            <Link to={`/sessiondetails/${session.id}`}>
+                                                            <Link to={`/sessiondetails/${this.props.id}/${session.id}`}>
                                                                 <button className={styles.fillFormButton}>
                                                                     View Session Details
                                                                 </button>
