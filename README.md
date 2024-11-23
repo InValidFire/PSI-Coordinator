@@ -10,7 +10,7 @@ React/Firebase
 
 ### Installation Steps
 
-Please make sure to have Node.js installed and that your version is 18 or higher. Link to download: [http://node.js.org/en/download](Download NodeJS)
+Please make sure to have Node.js installed and that your version is 18 or higher. Link to download: [http://node.js.org/en/download](Download NodeJS).
 
 1. Clone the repository
    ```
