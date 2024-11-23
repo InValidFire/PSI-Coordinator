@@ -3,7 +3,7 @@ import {
     collection,
     addDoc,
     updateDoc,
-    doc, deleteDoc, getDocs,
+    doc, deleteDoc, getDocs, getDoc,
 } from "firebase/firestore";
 
 const sessionCollectionRef = collection(db, "psisessions");
@@ -18,7 +18,8 @@ export const createSession = async (
         classname: classname,
         topic: topic,
         leader: leadername,
-        location: location
+        location: location,
+        verified: false,
     });
 };
 
@@ -55,4 +56,29 @@ export const readSessions = async () => {
     });
 
     return list;
+};
+
+export const findSession = async (id) => {
+    try {
+        const sessionDoc = await getDoc(doc(sessionCollectionRef, id)); // retrieve the document by ID
+        if (sessionDoc.exists()) {
+            const session = sessionDoc.data();
+            return [{
+                id: session.id,
+                day: session.day,
+                time: session.time,
+                classid: session.classid,
+                classname: session.classname,
+                topic: session.topic,
+                leader: session.leader,
+                location: session.location,
+            }];
+        } else {
+            console.log("Session not found.");
+            return [];
+        }
+    } catch (error) {
+        console.error("Error fetching session:", error);
+        return [];
+    }
 };
