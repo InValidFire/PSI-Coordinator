@@ -5,6 +5,7 @@ import '../CSS/LoginPage.css';  // Regular import for global styles
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
 import { useNavigate } from "react-router-dom";
+import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -31,6 +32,15 @@ const ForgotPassword = () => {
     return (
         <>
             <div className={styles.scrollingAdminLoginContainer}>
+                <AppHeader
+                    pageTitle="FORGOT PASSWORD"
+                    headerContents={[
+                        {
+                            "text": "LOGIN",
+                            "link": "/login"
+                        }
+                    ]}
+                />
                 <div className="login-section">
                     <Container className="form-container">
                         <Card className="login-form">

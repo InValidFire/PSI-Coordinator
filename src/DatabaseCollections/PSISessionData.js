@@ -10,14 +10,14 @@ const sessionCollectionRef = collection(db, "psisessions");
 
 export const createSession = async (
     day, time, classid, classname,
-    topic, leadername, location) => {
+    topic, leader, location) => {
     await addDoc(sessionCollectionRef, {
         day: day,
         time: time,
         classid: classid,
         classname: classname,
         topic: topic,
-        leader: leadername,
+        leader: leader,
         location: location,
         verified: false,
     });

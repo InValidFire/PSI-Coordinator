@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom"; // Import useParams
 import { createSession } from "../../DatabaseCollections/PSISessionData.js";
-import Input from "../JS COMPONENTS/Input.js";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import "../CSS/LoginPage.css";
 import styles from "../CSS/MainStyles.module.css";
@@ -22,13 +21,14 @@ function CreateSession() {
     const [errorMessage, setErrorMessage] = useState("");
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
     const navigate = useNavigate();
+    const { id } = useParams(); // Retrieve the id from the URL
 
     const handleAccount = async (e) => {
         e.preventDefault();
 
         // Validation checks
         if (!values.day || !values.time || !values.classid || !values.classname
-        || !values.topic || !values.leader || !values.location) {
+            || !values.topic || !values.leader || !values.location) {
             setErrorMessage("You must fill in all fields.");
             return;
         }
@@ -37,14 +37,18 @@ function CreateSession() {
         setSubmitButtonDisabled(true);
 
         try {
-            createSession(values.day, values.time, values.classid, values.classname, values.topic, values.leader, values.location).then(r => "");
+            await createSession(
+                values.day,
+                values.time,
+                values.classid,
+                values.classname,
+                values.topic,
+                values.leader,
+                values.location
+            );
 
         } catch (error) {
-            if (error.code === "auth/weak-password") {
-                setErrorMessage("Password is too weak. Please enter at least 6 characters and a number.");
-            }
-            else
-                setErrorMessage("Error creating account. Please try again.");
+            setErrorMessage("Error creating session. Please try again.");
             setSubmitButtonDisabled(false);
         }
     };
@@ -53,12 +57,16 @@ function CreateSession() {
         <>
             <div className={styles.scrollingAdminLoginContainer}>
                 <AppHeader
-                    pageTitle="CREATE ACCOUNT"
+                    pageTitle="CREATE SESSION"
                     headerContents={[
                         {
-                            "text": "LOGIN",
-                            "link": "/login"
-                        }
+                            text: "LOGIN",
+                            link: "/login",
+                        },
+                        {
+                            text: "BACK TO DASHBOARD",
+                            link: `/dashboard/leader/${id}`, // Use id in the link
+                        },
                     ]}
                 />
                 <div className="login-section">
@@ -74,9 +82,7 @@ function CreateSession() {
                                         <span className="bracket-icon">❮</span>
                                         <div className="welcome-text">
                                             <h1>Create Session</h1>
-                                            <p>
-                                                Create your PSI session
-                                            </p>
+                                            <p>Create your PSI session</p>
                                         </div>
                                         <span className="bracket-icon">❯</span>
                                     </div>

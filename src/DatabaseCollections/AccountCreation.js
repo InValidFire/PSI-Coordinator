@@ -45,6 +45,7 @@ export const login = async (email, password) => {
     const resp = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
+    console.log(resp.user);
     return resp.user;
 };
 

@@ -6,6 +6,7 @@ import { Card, Container } from "react-bootstrap";
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 import { readSessions } from "../../DatabaseCollections/PSISessionData.js";
+import handleLogout from "../JS/App.js";
 
 class PSILeaderDashboard extends Component {
     constructor(props) {
@@ -47,10 +48,6 @@ class PSILeaderDashboard extends Component {
                                 text: "CREATE NEW SESSION",
                                 link: `/create/session/${this.props.id}`
                             },
-                            {
-                                text: "LOGOUT",
-                                link: "/login"
-                            }
                         ]}
                     />
                     <Fragment>
