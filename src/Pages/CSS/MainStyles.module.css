@@ -214,6 +214,17 @@
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+.formInfo {
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 10px;
+}
+
+.formInfo:hover {
+    color: white;
+    background-color: darkgreen;
+}
+
 
 /* Responsive design for mobile screens */
 @media (max-width: 768px) {

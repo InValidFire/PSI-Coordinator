@@ -5,6 +5,7 @@ import '../CSS/LoginPage.css';  // Regular import for global styles
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
 import { useNavigate } from "react-router-dom";
+import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -31,15 +32,24 @@ const ForgotPassword = () => {
     return (
         <>
             <div className={styles.scrollingAdminLoginContainer}>
+                <AppHeader
+                    pageTitle="FORGOT PASSWORD"
+                    headerContents={[
+                        {
+                            "text": "LOGIN",
+                            "link": "/login"
+                        }
+                    ]}
+                />
                 <div className="login-section">
                     <Container className="form-container">
                         <Card className="login-form">
                             <Card.Body>
+                                <h1 className={"login-header"}>Forgot Password</h1>
                                 <div className="brackets">
                                     <span className="bracket-icon">❮</span>
-                                    <div className="welcome-text">
-                                        <h1>Forgot Password</h1>
-                                        <p>Enter your email to reset your password</p>
+                                    <div>
+                                        <p className={"welcome-text"}>Enter your email to reset your password</p>
                                     </div>
                                     <span className="bracket-icon">❯</span>
                                 </div>
@@ -54,8 +64,8 @@ const ForgotPassword = () => {
                                     <div className="button-group">
                                         <Button type="submit" className="submit-button">Reset Password</Button>
                                     </div>
-                                    {message && <p style={{ color: "green" }}>{message}</p>}
-                                    {error && <p style={{ color: "red" }}>{error}</p>}
+                                    {message && <p style={{color: "green"}}>{message}</p>}
+                                    {error && <p style={{color: "red"}}>{error}</p>}
                                 </form>
                             </Card.Body>
                         </Card>

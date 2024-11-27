@@ -10,6 +10,7 @@ class SessionDetails extends Component {
         super(props);
         this.state = {
             session: [], // setting state to store current session data
+            students: [],
         };
     }
 
@@ -20,10 +21,17 @@ class SessionDetails extends Component {
     loadSession = async () => {
         try {
             const session = await findSession(this.props.id2); // id2 holds the session unique data
-            this.setState({ session });
-            console.log(this.state.session);
+            const students = session.studentsAttending;
+            this.setState({
+                session,
+                students,
+            });
         } catch (error) {
             console.log("Can't find corresponding session!");
+            this.setState({
+                session: null,
+                students: [],
+            });
         }
     }
 
@@ -36,10 +44,6 @@ class SessionDetails extends Component {
                         {
                             "text": "BACK TO DASHBOARD",
                             "link": `/dashboard/leader/${this.props.id1}`
-                        },
-                        {
-                            "text": "LOGOUT",
-                            "link": "/login"
                         }
                     ]}
                 />
@@ -56,21 +60,21 @@ class SessionDetails extends Component {
                         </h1>
                     </div>
                     <div className={styles.mainContent}>
-                            {this.state.session.length > 0 ? (
-                                this.state.session.map((cursession) => (
-                                    <div className={styles.horizontalDetails}>
-                                        <p><strong>Leader Name: </strong>{cursession.leader}</p>
-                                        <p><strong>Session Topic: </strong>{cursession.topic}</p>
-                                        <p><strong>Class Course Name: </strong>{cursession.classname}</p>
-                                        <p><strong>Class Course Number: </strong> {cursession.classid}</p>
-                                        <p><strong>Day: </strong> {cursession.day}</p>
-                                        <p><strong>Time: </strong> {cursession.time}</p>
-                                        <p><strong>Where: </strong> {cursession.location}</p>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No sessions scheduled at the moment.</p>
-                            )}
+                        {this.state.session.length > 0 ? (
+                            this.state.session.map((cursession) => (
+                                <div className={styles.horizontalDetails}>
+                                    <p><strong>Leader Name: </strong>{cursession.leader}</p>
+                                    <p><strong>Session Topic: </strong>{cursession.topic}</p>
+                                    <p><strong>Class Course Name: </strong>{cursession.classname}</p>
+                                    <p><strong>Class Course Number: </strong> {cursession.classid}</p>
+                                    <p><strong>Day: </strong> {cursession.day}</p>
+                                    <p><strong>Time: </strong> {cursession.time}</p>
+                                    <p><strong>Where: </strong> {cursession.location}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No sessions scheduled at the moment.</p>
+                        )}
                     </div>
                     <h2 className={styles.participantsHeader}>Participants</h2>
                     <div className={styles.mainContent}>
@@ -83,26 +87,23 @@ class SessionDetails extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Perry Platypus</td>
-                                <td>Attending</td>
-                                <td>pplatypus@ggc.edu</td>
-                            </tr>
-                            <tr>
-                                <td>Terry Triceratops</td>
-                                <td>Cancelled</td>
-                                <td>ttricera@ggc.edu</td>
-                            </tr>
-                            <tr>
-                                <td>Romeo Montague</td>
-                                <td>Attending</td>
-                                <td>rmontague@ggc.edu</td>
-                            </tr>
-                            <tr>
-                                <td>Juliet Capulet</td>
-                                <td>Attending</td>
-                                <td>jcapulet@ggc.edu</td>
-                            </tr>
+                            {this.state.session.length > 0 ? (
+                                this.state.session.map((participant) => (
+                                    participant.studentsAttending.map((curStudent) => (
+                                        <tr>
+                                            <td>{curStudent.name}</td>
+                                            <td>Attending</td>
+                                            <td>{curStudent.email}</td>
+                                        </tr>
+                                    ))
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="3" style={{textAlign: "center"}}>
+                                        No students attending this session.
+                                    </td>
+                                </tr>
+                            )}
                             </tbody>
                         </Table>
                     </div>

@@ -1,62 +1,113 @@
-import React, { Fragment } from "react";
-import { Link } from 'react-router-dom';
-import FieldEntry from "../../Field-Entry.js";
+import React, {Component, Fragment} from "react";
 import styles from '../CSS/MainStyles.module.css';
 import AppHeader from '../../HeaderAndFooter/PageHeader.js';
 import PageFooter from '../../HeaderAndFooter/PageFooter.js';
-import { Button, Card, Container } from "react-bootstrap";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {findUser} from "../../DatabaseCollections/AccountCreation.js";
+import { findSessions } from "../../DatabaseCollections/PSISessionData.js";
 
-const StudentDashboard = () => {
-    return (
-        <>
-            <div className={styles.scrollingAdminLoginContainer}>
+class StudentDashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sessions: [],
+            userInfo: [],
+            userId: null,
+            userName: "",
+            userEmail: "",
+        };
+    }
+
+    componentDidMount() {
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                this.setState({
+                    userId: user.uid,
+                    userName: user.displayName || "Anonymous",
+                    userEmail: user.email || "N/A",
+                });
+
+                const userData = await findUser(user.uid);
+
+                if (userData && userData.signedUpSessions) {
+                    const sessionIds = userData.signedUpSessions;
+                    const sessions = await Promise.all(sessionIds.map((id) => findSessions(id)));
+
+                    this.setState({
+                        userData,
+                        sessions,
+                    });
+                }
+            } else {
+                console.error("No user is signed in.");
+            }
+        });
+    }
+
+    render() {
+        const { userName, userEmail, sessions } = this.state;
+
+        return (
+            <>
                 <AppHeader
                     pageTitle="STUDENT DASHBOARD"
-                    headerContents={[
+                    headerContents= {[
                         {
-                            "text": "SESSION SIGNUP",
-                            "link": "/create/session"
+                            text: "SIGNUP FOR A SESSION",
+                            link: `/session/signup/${this.props.id}`,
                         },
                         {
-                            "text": "LOGOUT",
-                            "link": "/login"
-                        }
+                            text: "LOGOUT",
+                            link: "/login",
+                        },
                     ]}
                 />
                 <Fragment>
-                    <div className={styles.container}>
-                        <div className={styles.contentContainer}>
-                            <main className={styles.mainContent}>
-                                <Container className={styles.scrollableContent}>
-                                    <Card className={styles.formSection}>
-                                        <Card.Title className={styles.formSectionTitle} id="currentSchedule">Your Upcoming Sessions</Card.Title>
-                                        <Card.Text>Click on each time to view your session details.</Card.Text>
-                                        <div className={styles.formData}>
-                                            <FieldEntry entryName={"Monday"} entryValue={"12:00PM-1:00PM"} />
-                                            <Link to="/create/session">
-                                                <Button className={styles.fillFormButton}>
-                                                    View Session Details
-                                                </Button>
-                                            </Link>
-                                            <FieldEntry entryName={"Wednesday"} entryValue={"12:00PM-1:00PM"} />
-                                            <Link to="/create/session">
-                                                <Button className={styles.fillFormButton}>
-                                                    View Session Details
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </Card>
-                                    <br />
-                                    <br />
-                                </Container>
-                            </main>
+                    <div className={styles.mainContent}>
+                        <div className={styles.horizontalDetails}>
+                            <p><strong>Your Name: </strong>{userName}</p>
+                            <p><strong>Your Email: </strong>{userEmail}</p>
                         </div>
                     </div>
-                    <PageFooter />
                 </Fragment>
-            </div>
-        </>
-    );
-};
+                <div>
+                    <h2>Upcoming Sessions</h2>
+                    <div className={styles.upload}>
+                        {sessions && sessions.length > 0 ? (
+                            sessions.map((session) => (
+                                <div key={session.id} className={styles.formInfo}>
+                                    <h4>{session.classname}</h4>
+                                    <p><strong>Topic: </strong>{session.topic}</p>
+                                    <p><strong>Leader: </strong>{session.leader}</p>
+                                    <p><strong>Location: </strong>{session.location}</p>
+                                    <p><strong>Day: </strong>{session.day} | <strong>Time:</strong> {session.time}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No sessions signed up yet.</p>
+                        )}
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <PageFooter />
+            </>
+        );
+    }
+
+}
 
 export default StudentDashboard;

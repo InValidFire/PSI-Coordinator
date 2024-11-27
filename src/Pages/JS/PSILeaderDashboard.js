@@ -7,6 +7,9 @@ import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 import { readSessions } from "../../DatabaseCollections/PSISessionData.js";
 
+// Right now this page is reading all the session data in the database so we need to change the logic so that
+// we are only reading the current psi leaders sessions
+
 class PSILeaderDashboard extends Component {
     constructor(props) {
         super(props);
@@ -38,10 +41,10 @@ class PSILeaderDashboard extends Component {
                 <div className={styles.scrollingAdminLoginContainer}>
                     <AppHeader
                         pageTitle="PSI LEADER DASHBOARD"
-                        headerContents={[
+                        headerContents= {[
                             {
                                 text: "STUDENT DASHBOARD",
-                                link: "/dashboard/student"
+                                link: `/dashboard/student/${this.props.id}`
                             },
                             {
                                 text: "CREATE NEW SESSION",
@@ -50,7 +53,7 @@ class PSILeaderDashboard extends Component {
                             {
                                 text: "LOGOUT",
                                 link: "/login"
-                            }
+                            },
                         ]}
                     />
                     <Fragment>
@@ -71,7 +74,7 @@ class PSILeaderDashboard extends Component {
                                                     sessions.map((session) => (
                                                         <div key={session.id}>
                                                             <FieldEntry entryName={session.day} entryValue={`${session.time} - ${session.classname}`} />
-                                                            <Link to={`/sessiondetails/${this.props.id}/${session.id}`}>
+                                                            <Link to={`/session/details/${this.props.id}/${session.id}`}>
                                                                 <button className={styles.fillFormButton}>
                                                                     View Session Details
                                                                 </button>

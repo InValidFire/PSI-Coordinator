@@ -1,5 +1,6 @@
 import { db } from "../config.js";
 import {
+    arrayUnion,
     collection,
     addDoc,
     updateDoc,
@@ -10,15 +11,16 @@ const sessionCollectionRef = collection(db, "psisessions");
 
 export const createSession = async (
     day, time, classid, classname,
-    topic, leadername, location) => {
+    topic, leader, location) => {
     await addDoc(sessionCollectionRef, {
         day: day,
         time: time,
         classid: classid,
         classname: classname,
         topic: topic,
-        leader: leadername,
+        leader: leader,
         location: location,
+        studentsAttending: [],
         verified: false,
     });
 };
@@ -30,6 +32,14 @@ export const updateSession = async (id, topic, location) => {
         location: location
     };
     await updateDoc(sessionDoc, newFields);
+};
+
+export const addStudent = async (id, uid, name, email) => {
+    const sessionDoc = doc(db, "psisessions", id);
+    const newStudent = { uid, email, name };
+    await updateDoc(sessionDoc, {
+        studentsAttending: arrayUnion(newStudent), // Use arrayUnion to avoid overwriting any previous arrays
+    });
 };
 
 export const deleteSession = async (id) => {
@@ -50,6 +60,7 @@ export const readSessions = async () => {
             classid: session.classid,
             classname: session.classname,
             topic: session.topic,
+            studentsAttending: session.studentsAttending,
             leader: session.leadername,
             location: session.location,
         });
@@ -70,6 +81,7 @@ export const findSession = async (id) => {
                 classid: session.classid,
                 classname: session.classname,
                 topic: session.topic,
+                studentsAttending: session.studentsAttending,
                 leader: session.leader,
                 location: session.location,
             }];
@@ -82,3 +94,19 @@ export const findSession = async (id) => {
         return [];
     }
 };
+
+export const findSessions = async (id) => {
+    try {
+        const sessionDoc = await getDoc(doc(sessionCollectionRef, id));
+        if (sessionDoc.exists()) {
+            return { id: sessionDoc.id, ...sessionDoc.data() };
+        } else {
+            console.error(`No session found with ID: ${id}`);
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching session:", error);
+        return null;
+    }
+};
+

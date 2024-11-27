@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { db } from "../config.js";
-import {collection, addDoc, getDocs} from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where, updateDoc, arrayUnion } from "firebase/firestore";
 
 const accountsCollectionRef = collection(db, "users");
 
@@ -27,12 +27,15 @@ export const signup = async (
             role: role,
             verified: false,
             classPSI: classPSI,
+            signedUpSessions: [],
         });
     } else {
         addDoc(accountsCollectionRef, {
             id: userid,
             name: name.join(" "),
+            role: "student",
             email: email,
+            signedUpSessions: [],
         });
     }
 };
@@ -45,6 +48,7 @@ export const login = async (email, password) => {
     const resp = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
+    console.log(resp.user);
     return resp.user;
 };
 
@@ -58,4 +62,49 @@ export const verification = async (email) => {
         return leader.verified === true;
     else
         return false;
+};
+
+export const leaderOrStudent = async (email) => {
+    const data = await getDocs(accountsCollectionRef);
+    const users = data.docs.map((doc) => doc.data());
+
+    const leadOrStu = users.find((leadOrStu) => leadOrStu.email === email);
+
+    if (leadOrStu)
+        return leadOrStu.role;
+    else
+        return false;
+};
+
+export const findUser = async (uid) => {
+    const data = await getDocs(accountsCollectionRef);
+    const users = data.docs.map((doc) => doc.data());
+
+    const user = users.find((user) => user.id === uid);
+
+    if (user)
+        return user;
+    else
+        return false;
+};
+
+export const addSessionId = async (sessionid, uid) => {
+    try {
+        const userQuery = query(accountsCollectionRef, where("id", "==", uid));
+        const querySnapshot = await getDocs(userQuery);
+
+        if (querySnapshot.empty)
+            return false;
+
+        const userDoc = querySnapshot.docs[0];
+        const userDocRef = userDoc.ref;
+
+        await updateDoc(userDocRef, {
+            signedUpSessions: arrayUnion(sessionid), // Add session ID without duplicating
+        });
+
+        return true; // Success
+    } catch (error) {
+        return false;
+    }
 };
