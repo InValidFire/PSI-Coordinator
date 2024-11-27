@@ -4,7 +4,7 @@ import {
     getDocs,
     addDoc,
     deleteDoc,
-    doc,
+    doc, getDoc,
 } from "firebase/firestore";
 
 //get references of collections named 'students'

@@ -5,7 +5,7 @@ import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
 import {Link, useNavigate} from "react-router-dom";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
-import { login, verification } from "../../DatabaseCollections/AccountCreation.js";
+import {leaderOrStudent, login, verification} from "../../DatabaseCollections/AccountCreation.js";
 import Input from "../JS COMPONENTS/Input.js";
 
 const LoginPage = () => {
@@ -39,11 +39,16 @@ const LoginPage = () => {
 
     const handleLogin = async (precheckLogin) => {
         setSubmitButtonDisabled(true);
-        const leaderVerified = await verification(values.email);
-        if (!leaderVerified)
-            setErrorMessage("Login Access Denied. Your account has not yet been verified.");
+        const leadOrStu = await leaderOrStudent(values.email);
+        if (leadOrStu === "student")
+            navigate(`/dashboard/student/${precheckLogin.uid}`);
         else{
-            navigate(`/dashboard/leader/${precheckLogin.uid}`);
+            const leaderVerified = await verification(values.email);
+            if (!leaderVerified)
+                setErrorMessage("Login Access Denied. Your account has not yet been verified.");
+            else{
+                navigate(`/dashboard/leader/${precheckLogin.uid}`);
+            }
         }
     }
 
@@ -75,11 +80,12 @@ const LoginPage = () => {
                         <Container className="form-container">
                             <Card className="login-form">
                                 <Card.Body>
+                                    <h1 className={"login-header"}>Login</h1>
                                     <div className="brackets">
                                         <span className="bracket-icon">❮</span>
-                                        <div className="welcome-text">
-                                            <h1>Login</h1>
-                                            <p>Log in with your GGC credentials<br />to access your PSI sessions, schedules, and resources</p>
+                                        <div>
+                                            <p className={"welcome-text"}>Log in with your GGC credentials<br/>to access
+                                                your PSI sessions, schedules, and resources</p>
                                         </div>
                                         <span className="bracket-icon">❯</span>
                                     </div>
@@ -89,7 +95,7 @@ const LoginPage = () => {
                                             label="GGC Email"
                                             placeholder="Enter email address"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, email: event.target.value }))
+                                                setValues((prev) => ({...prev, email: event.target.value}))
                                             }
                                         />
                                         <Input
@@ -97,19 +103,19 @@ const LoginPage = () => {
                                             label="Password"
                                             placeholder="Enter password"
                                             onChange={(event) =>
-                                                setValues((prev) => ({ ...prev, pass: event.target.value }))
+                                                setValues((prev) => ({...prev, pass: event.target.value}))
                                             }
                                         />
                                         <label className="checkbox-label">
-                                            <input type="checkbox" />
+                                            <input type="checkbox"/>
                                             Stay Signed In
                                         </label>
                                         {/*<Button type="submit" className="submit-button">Login</Button>*/}
-                                        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+                                        {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                                         <Button
                                             onClick={handleErrors}
                                             disabled={submitButtonDisabled}
-                                            style={{ margin: "auto" }}
+                                            style={{margin: "auto"}}
                                             className={"submit-button"}
                                         >
                                             Login

@@ -1,5 +1,6 @@
 import { db } from "../config.js";
 import {
+    arrayUnion,
     collection,
     addDoc,
     updateDoc,
@@ -19,6 +20,7 @@ export const createSession = async (
         topic: topic,
         leader: leader,
         location: location,
+        studentsAttending: [],
         verified: false,
     });
 };
@@ -30,6 +32,14 @@ export const updateSession = async (id, topic, location) => {
         location: location
     };
     await updateDoc(sessionDoc, newFields);
+};
+
+export const addStudent = async (id, name, email) => {
+    const sessionDoc = doc(db, "psisessions", id);
+    const newStudent = { name, email };
+    await updateDoc(sessionDoc, {
+        studentsAttending: arrayUnion(newStudent), // Use arrayUnion to avoid overwriting
+    });
 };
 
 export const deleteSession = async (id) => {
@@ -50,6 +60,7 @@ export const readSessions = async () => {
             classid: session.classid,
             classname: session.classname,
             topic: session.topic,
+            studentsAttending: session.studentsAttending,
             leader: session.leadername,
             location: session.location,
         });

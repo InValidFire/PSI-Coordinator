@@ -6,7 +6,9 @@ import { Card, Container } from "react-bootstrap";
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 import { readSessions } from "../../DatabaseCollections/PSISessionData.js";
-import handleLogout from "../JS/App.js";
+
+// Right now this page is reading all the session data in the database so we need to change the logic so that
+// we are only reading the current psi leaders sessions
 
 class PSILeaderDashboard extends Component {
     constructor(props) {
@@ -48,6 +50,10 @@ class PSILeaderDashboard extends Component {
                                 text: "CREATE NEW SESSION",
                                 link: `/create/session/${this.props.id}`
                             },
+                            {
+                                text: "LOGOUT",
+                                link: "/login"
+                            },
                         ]}
                     />
                     <Fragment>
@@ -68,7 +74,7 @@ class PSILeaderDashboard extends Component {
                                                     sessions.map((session) => (
                                                         <div key={session.id}>
                                                             <FieldEntry entryName={session.day} entryValue={`${session.time} - ${session.classname}`} />
-                                                            <Link to={`/sessiondetails/${this.props.id}/${session.id}`}>
+                                                            <Link to={`/session/details/${this.props.id}/${session.id}`}>
                                                                 <button className={styles.fillFormButton}>
                                                                     View Session Details
                                                                 </button>

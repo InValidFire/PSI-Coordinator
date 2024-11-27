@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { db } from "../config.js";
-import {collection, addDoc, getDocs} from "firebase/firestore";
+import {collection, addDoc, getDocs, query, where} from "firebase/firestore";
 
 const accountsCollectionRef = collection(db, "users");
 
@@ -32,6 +32,7 @@ export const signup = async (
         addDoc(accountsCollectionRef, {
             id: userid,
             name: name.join(" "),
+            role: "student",
             email: email,
         });
     }
@@ -60,3 +61,28 @@ export const verification = async (email) => {
     else
         return false;
 };
+
+export const leaderOrStudent = async (email) => {
+    const data = await getDocs(accountsCollectionRef);
+    const users = data.docs.map((doc) => doc.data());
+
+    const leadOrStu = users.find((leadOrStu) => leadOrStu.email === email);
+
+    if (leadOrStu)
+        return leadOrStu.role;
+    else
+        return false;
+};
+
+export const findUser = async (uid) => {
+    const data = await getDocs(accountsCollectionRef);
+    const users = data.docs.map((doc) => doc.data());
+
+    const user = users.find((user) => user.id === uid);
+
+    if (user)
+        return user;
+    else
+        return false;
+};
+

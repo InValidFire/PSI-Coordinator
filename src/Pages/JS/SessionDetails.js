@@ -36,10 +36,6 @@ class SessionDetails extends Component {
                         {
                             "text": "BACK TO DASHBOARD",
                             "link": `/dashboard/leader/${this.props.id1}`
-                        },
-                        {
-                            "text": "LOGOUT",
-                            "link": "/login"
                         }
                     ]}
                 />
