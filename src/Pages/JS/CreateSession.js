@@ -65,7 +65,7 @@ function CreateSession(index) {
                     pageTitle="CREATE SESSION"
                     headerContents={[
                         {
-                            text: "LOGIN",
+                            text: "LOGOUT",
                             link: "/login",
                         },
                         {

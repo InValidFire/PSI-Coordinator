@@ -34,11 +34,11 @@ export const updateSession = async (id, topic, location) => {
     await updateDoc(sessionDoc, newFields);
 };
 
-export const addStudent = async (id, name, email) => {
+export const addStudent = async (id, uid, name, email) => {
     const sessionDoc = doc(db, "psisessions", id);
-    const newStudent = { name, email };
+    const newStudent = { uid, email, name };
     await updateDoc(sessionDoc, {
-        studentsAttending: arrayUnion(newStudent), // Use arrayUnion to avoid overwriting
+        studentsAttending: arrayUnion(newStudent), // Use arrayUnion to avoid overwriting any previous arrays
     });
 };
 
@@ -81,6 +81,7 @@ export const findSession = async (id) => {
                 classid: session.classid,
                 classname: session.classname,
                 topic: session.topic,
+                studentsAttending: session.studentsAttending,
                 leader: session.leader,
                 location: session.location,
             }];
@@ -93,3 +94,19 @@ export const findSession = async (id) => {
         return [];
     }
 };
+
+export const findSessions = async (id) => {
+    try {
+        const sessionDoc = await getDoc(doc(sessionCollectionRef, id));
+        if (sessionDoc.exists()) {
+            return { id: sessionDoc.id, ...sessionDoc.data() };
+        } else {
+            console.error(`No session found with ID: ${id}`);
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching session:", error);
+        return null;
+    }
+};
+

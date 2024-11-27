@@ -3,13 +3,16 @@ import styles from '../CSS/MainStyles.module.css';
 import AppHeader from '../../HeaderAndFooter/PageHeader.js';
 import PageFooter from '../../HeaderAndFooter/PageFooter.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {findUser} from "../../DatabaseCollections/AccountCreation.js";
+import { findSessions } from "../../DatabaseCollections/PSISessionData.js";
 
 class StudentDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sessions: [], // State to store session data
-            userId: null, // To store the user's uid
+            sessions: [],
+            userInfo: [],
+            userId: null,
             userName: "",
             userEmail: "",
         };
@@ -18,14 +21,25 @@ class StudentDashboard extends Component {
     componentDidMount() {
         const auth = getAuth();
 
-        // Listen for authentication state changes
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
                 this.setState({
                     userId: user.uid,
                     userName: user.displayName || "Anonymous",
                     userEmail: user.email || "N/A",
                 });
+
+                const userData = await findUser(user.uid);
+
+                if (userData && userData.signedUpSessions) {
+                    const sessionIds = userData.signedUpSessions;
+                    const sessions = await Promise.all(sessionIds.map((id) => findSessions(id)));
+
+                    this.setState({
+                        userData,
+                        sessions,
+                    });
+                }
             } else {
                 console.error("No user is signed in.");
             }
@@ -33,27 +47,27 @@ class StudentDashboard extends Component {
     }
 
     render() {
-        const { userId, userName, userEmail } = this.state;
+        const { userName, userEmail, sessions } = this.state;
 
         return (
             <>
                 <AppHeader
                     pageTitle="STUDENT DASHBOARD"
-                    headerContents={[
+                    headerContents= {[
                         {
                             text: "SIGNUP FOR A SESSION",
-                            link: `/session/signup/${this.props.id}`
+                            link: `/session/signup/${this.props.id}`,
                         },
                         {
                             text: "LOGOUT",
-                            link: "/login"
-                        }
+                            link: "/login",
+                        },
                     ]}
                 />
                 <Fragment>
                     <div className={styles.mainContent}>
                         <div className={styles.horizontalDetails}>
-                            <p><strong>Your Name: </strong>{userName}</p> {/*Retrieve this information from the database*/}
+                            <p><strong>Your Name: </strong>{userName}</p>
                             <p><strong>Your Email: </strong>{userEmail}</p>
                         </div>
                     </div>
@@ -61,10 +75,19 @@ class StudentDashboard extends Component {
                 <div>
                     <h2>Upcoming Sessions</h2>
                     <div className={styles.upload}>
-                        <h3>Upload A File</h3>
-                        {/* Add the map to get all the sessions this person signed up for
-                        have the session name be a h4, then under the session name have the
-                        session topic name, session leader name, and the session location*/}
+                        {sessions && sessions.length > 0 ? (
+                            sessions.map((session) => (
+                                <div key={session.id} className={styles.formInfo}>
+                                    <h4>{session.classname}</h4>
+                                    <p><strong>Topic: </strong>{session.topic}</p>
+                                    <p><strong>Leader: </strong>{session.leader}</p>
+                                    <p><strong>Location: </strong>{session.location}</p>
+                                    <p><strong>Day: </strong>{session.day} | <strong>Time:</strong> {session.time}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No sessions signed up yet.</p>
+                        )}
                     </div>
                 </div>
                 <br/>
@@ -80,10 +103,11 @@ class StudentDashboard extends Component {
                 <br/>
                 <br/>
                 <br/>
-                <PageFooter/>
+                <PageFooter />
             </>
         );
     }
+
 }
 
 export default StudentDashboard;

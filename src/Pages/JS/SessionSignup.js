@@ -6,7 +6,7 @@ import styles from "../CSS/MainStyles.module.css";
 import AppHeader from "../../HeaderAndFooter/PageHeader.js";
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import { readSessions, addStudent } from "../../DatabaseCollections/PSISessionData.js";
-import { findUser } from "../../DatabaseCollections/AccountCreation.js";
+import {addSessionId, findUser} from "../../DatabaseCollections/AccountCreation.js";
 
 function SessionSignup() {
     const [sessions, setSessions] = useState([]); // To store the list of sessions
@@ -56,7 +56,8 @@ function SessionSignup() {
 
             // Loop through selected sessions and update each
             for (const sessionId of selectedSessions) {
-                await addStudent(sessionId, userDetails.name, userDetails.email);
+                await addStudent(sessionId, id, userDetails.name, userDetails.email);
+                await addSessionId(sessionId, id);
             }
 
             navigate(`/dashboard/student/${id}`);

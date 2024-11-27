@@ -41,10 +41,10 @@ class PSILeaderDashboard extends Component {
                 <div className={styles.scrollingAdminLoginContainer}>
                     <AppHeader
                         pageTitle="PSI LEADER DASHBOARD"
-                        headerContents={[
+                        headerContents= {[
                             {
                                 text: "STUDENT DASHBOARD",
-                                link: "/dashboard/student"
+                                link: `/dashboard/student/${this.props.id}`
                             },
                             {
                                 text: "CREATE NEW SESSION",
