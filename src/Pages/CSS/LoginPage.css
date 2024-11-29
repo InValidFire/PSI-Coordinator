@@ -43,6 +43,8 @@ code {
     font-size: 36px; /* Adjusted for mobile */
     color: #004d00;
     padding: 10px 15px;
+    margin: 0 50px;  /* Adds space around the arrows */
+
 }
 
 /* Welcome text styling */
