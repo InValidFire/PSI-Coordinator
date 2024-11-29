@@ -82,12 +82,12 @@ const LoginPage = () => {
                                 <Card.Body>
                                     <h1 className={"login-header"}>Login</h1>
                                     <div className="brackets">
-                                        <span className="bracket-icon">❮</span>
+                                        <span className="bracket-icon-login">❮</span>
                                         <div>
                                             <p className={"welcome-text"}>Log in with your GGC credentials<br/>to access
                                                 your PSI sessions, schedules, and resources</p>
                                         </div>
-                                        <span className="bracket-icon">❯</span>
+                                        <span className="bracket-icon-login">❯</span>
                                     </div>
                                     <Form>
                                         <Input

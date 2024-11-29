@@ -47,11 +47,11 @@ const ForgotPassword = () => {
                             <Card.Body>
                                 <h1 className={"login-header"}>Forgot Password</h1>
                                 <div className="brackets">
-                                    <span className="bracket-icon">❮</span>
+                                    <span className="bracket-icon-forgot">❮</span>
                                     <div>
                                         <p className={"welcome-text"}>Enter your email to reset your password</p>
                                     </div>
-                                    <span className="bracket-icon">❯</span>
+                                    <span className="bracket-icon-forgot">❯</span>
                                 </div>
                                 <form onSubmit={handlePasswordReset}>
                                     <input
