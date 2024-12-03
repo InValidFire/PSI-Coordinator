@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Button, Card } from "react-bootstrap";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import '../CSS/LoginPage.css';  // Regular import for global styles
+import '../CSS/LoginPage.css';
 import PageFooter from "../../HeaderAndFooter/PageFooter.js";
 import styles from "../CSS/MainStyles.module.css";
 import { useNavigate } from "react-router-dom";

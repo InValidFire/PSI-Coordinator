@@ -64,11 +64,7 @@ const LoginPage = () => {
                         {
                             "text": "CREATE ACCOUNT",
                             "link": "/create/account"
-                        }/*,
-                        {
-                            "text": "ADMIN LOGIN",
-                            "link": "/create/account" /!* Change link to be admin login page*!/
-                        }*/
+                        },
                     ]}
                 />
                 <div className="login-section">
@@ -110,7 +106,6 @@ const LoginPage = () => {
                                             <input type="checkbox"/>
                                             Stay Signed In
                                         </label>
-                                        {/*<Button type="submit" className="submit-button">Login</Button>*/}
                                         {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                                         <Button
                                             onClick={handleErrors}

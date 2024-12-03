@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Import useParams
+import { useNavigate, useParams } from "react-router-dom";
 import { createSession } from "../../DatabaseCollections/PSISessionData.js";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import "../CSS/LoginPage.css";

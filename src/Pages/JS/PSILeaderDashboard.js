@@ -14,7 +14,7 @@ class PSILeaderDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sessions: [], // State to store session data
+            sessions: [],
         };
     }
 
@@ -69,7 +69,6 @@ class PSILeaderDashboard extends Component {
                                                 Click on each time to view the session details.
                                             </Card.Text>
                                             <div className={styles.formData}>
-                                                {/* Map through sessions and create FieldEntry components */}
                                                 {sessions.length > 0 ? (
                                                     sessions.map((session) => (
                                                         <div key={session.id}>

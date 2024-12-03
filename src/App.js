@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import LoginPage from "./Pages/JS/LoginPage.js";
-import StudentDashboard from "./Pages/JS/StudentDashboard.js";
 import CreateAccount from "./Pages/JS/CreateAccount.js";
 import ForgotPassword from "./Pages/JS/ForgotPassword.js";
 import DashboardID from "./Pages/JS COMPONENTS/PSIDashboardID.js";
@@ -42,17 +41,7 @@ function App() {
     return (
         <Router>
             <main className="App">
-                {/*<PageHeader
-                    pageTitle="PSI Coordinator"
-                    headerContents={[
-                        isLoggedIn
-                            ? { text: "LOGOUT", link: "/", onClick: handleLogout } // Display "LOGOUT" if logged in
-                            : { text: "LOGIN", link: "/login" }, // Display "LOGIN" if not logged in
-                        { text: "ADD SCHEDULE", link: "/addPSISchedule" },
-                    ]}
-                />*/}
                 <Routes>
-                    {/*<Route path="/dashboard/leader/:id" element={<PSILeaderDashboard />} />*/}
                     <Route path="/dashboard/leader/:id" element={<DashboardID />} />
                     <Route path="/" element={<LoginPage />} />
                     <Route path="/login" element={<LoginPage />} />
