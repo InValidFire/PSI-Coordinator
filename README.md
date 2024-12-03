@@ -24,4 +24,4 @@ Please make sure to have Node.js installed and that your version is 18 or higher
 
 ### Challenges/Non-Working Features
 
-The upload functionality that will store the file data to our database does not currently work. Users will be able to click on the upload box and select a file however nothing will be stored.
+The upload functionality that will store the file data to our database does not currently work. Users will be able to click on the upload box and select a file however nothing will be stored and only one file will appear in the list.
