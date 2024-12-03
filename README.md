@@ -21,3 +21,7 @@ Please make sure to have Node.js installed and that your version is 18 or higher
    cd src
    npm start
    ```
+
+### Challenges/Non-Working Features
+
+The upload functionality that will store the file data to our database does not currently work. Users will be able to click on the upload box and select a file however nothing will be stored.
