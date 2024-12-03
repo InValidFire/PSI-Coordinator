@@ -24,4 +24,7 @@ Please make sure to have Node.js installed and that your version is 18 or higher
 
 ### Challenges/Non-Working Features
 
-The upload functionality that will store the file data to our database does not currently work. Users will be able to click on the upload box and select a file however nothing will be stored and only one file will appear in the list.
+1. The upload functionality that will store the file data to our database does not currently work. Users will be able to click on the upload box and select a file however nothing will be stored and only one file will appear in the list.
+2. Students will not be able to cancel a session once they have signed up.
+3. PSI Leaders who go to the student dashoard will not be able to return to the PSI Leader Dashboard.
+4. The PSI Leader dashboard does not currently only show the signed in leaders session but instead pulls all the stored information in the database.
