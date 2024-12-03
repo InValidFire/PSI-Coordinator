@@ -10,6 +10,7 @@ import SessionDashboardID from "./Pages/JS COMPONENTS/SessionDetailsDashboardID.
 import StudentDashboardID from "./Pages/JS COMPONENTS/StudentDashboardID.js";
 import CreateSession from "./Pages/JS/CreateSession.js";
 import SessionSignup from "./Pages/JS/SessionSignup.js";
+import AdminDashboardID from "./Pages/JS COMPONENTS/AdminDashboardID.js";
 
 function App() {
     console.log("App component rendered");
@@ -51,6 +52,7 @@ function App() {
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/dashboard/student/:id" element={<StudentDashboardID />} />
                     <Route path="/session/signup/:id" element={<SessionSignup />} />
+                    <Route path="/dashboard/admin/:id" element={<AdminDashboardID />}/>
                 </Routes>
             </main>
         </Router>

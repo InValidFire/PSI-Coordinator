@@ -11,5 +11,6 @@ export const available_class_codes_and_names =
     "CHEM 1212K - Principles of Chemistry II with Laboratory",
     "CHEM 2211K - Organic Chemistry I with Laboratory",
     "ENGL 1101 - English Composition I",
-    "ENGL 1102 - English Composition II"
+    "ENGL 1102 - English Composition II",
+        "MATH 1101 - College Algebra",
     ]

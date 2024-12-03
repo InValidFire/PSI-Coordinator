@@ -206,6 +206,10 @@
     border-radius: 0.25rem;
     border: 1px solid #ced4da;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    text-align: left;  /* Align the text in the dropdown to the left */
+    width: 100%;       /* Make sure the dropdown takes up the full width */
+    margin-bottom: 0.5rem; /* Adjust the margin value as needed */
+
 }
 
 .formControl:focus {

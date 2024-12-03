@@ -33,6 +33,7 @@ const LoginPage = () => {
             } else {
                 setErrorMessage("An error occurred. Please try again later.");
             }
+            setSubmitButtonDisabled(false); // Re-enable the button after an error
         }
     };
 
@@ -42,6 +43,8 @@ const LoginPage = () => {
         const leadOrStu = await leaderOrStudent(values.email);
         if (leadOrStu === "student")
             navigate(`/dashboard/student/${precheckLogin.uid}`);
+        else if (leadOrStu === "admin")
+            navigate(`/dashboard/admin/${precheckLogin.uid}`);
         else{
             const leaderVerified = await verification(values.email);
             if (!leaderVerified)
@@ -52,12 +55,20 @@ const LoginPage = () => {
         }
     }
 
+    const handleInputChange = (field, value) => {
+        setValues(prevValues => ({
+            ...prevValues,
+            [field]: value,
+        }));
+
+        // Reset error message and re-enable the button when input changes
+        setErrorMessage("");
+        setSubmitButtonDisabled(false);
+    };
 
     return (
         <>
-            <div
-                className={styles.scrollingAdminLoginContainer}
-            >
+            <div className={styles.scrollingAdminLoginContainer}>
                 <AppHeader
                     pageTitle="LOGIN"
                     headerContents={[
@@ -78,12 +89,12 @@ const LoginPage = () => {
                                 <Card.Body>
                                     <h1 className={"login-header"}>Login</h1>
                                     <div className="brackets">
-                                        <span className="bracket-icon">❮</span>
+                                        <span className="bracket-icon-login">❮</span>
                                         <div>
                                             <p className={"welcome-text"}>Log in with your GGC credentials<br/>to access
                                                 your PSI sessions, schedules, and resources</p>
                                         </div>
-                                        <span className="bracket-icon">❯</span>
+                                        <span className="bracket-icon-login">❯</span>
                                     </div>
                                     <Form>
                                         <Input

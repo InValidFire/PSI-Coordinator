@@ -105,14 +105,14 @@ function CreateAccount() {
                                 <Card.Body>
                                     <h1 className={"login-header"}>Create Account</h1>
                                     <div className="brackets">
-                                        <span className="bracket-icon">❮</span>
+                                        <span className="bracket-icon-signup">❮</span>
                                         <div>
                                             <p className={"welcome-text"}>
                                                 Create an account with your GGC credentials<br/>
                                                 to access your PSI sessions, schedules, and resources
                                             </p>
                                         </div>
-                                        <span className="bracket-icon">❯</span>
+                                        <span className="bracket-icon-signup">❯</span>
                                     </div>
                                     <Form onSubmit={handleAccount}>
                                         <Input

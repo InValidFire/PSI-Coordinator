@@ -43,8 +43,25 @@ code {
     font-size: 36px; /* Adjusted for mobile */
     color: #004d00;
     padding: 10px 15px;
+    margin: 0 50px;  /* Adds space around the arrows */
+
+}
+.bracket-icon-login {
+    font-size: 36px; /* Adjusted for mobile */
+    color: #004d00;
+    padding: 10px 15px;
+}
+.bracket-icon-signup {
+    font-size: 36px; /* Adjusted for mobile */
+    color: #004d00;
+    padding: 10px 15px;
 }
 
+.bracket-icon-forgot {
+    font-size: 36px; /* Adjusted for mobile */
+    color: #004d00;
+    padding: 10px 15px;
+}
 /* Welcome text styling */
 /* Centers the welcome message and defines spacing for headings and paragraphs. */
 .welcome-text {
