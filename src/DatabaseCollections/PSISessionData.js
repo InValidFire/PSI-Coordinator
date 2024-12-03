@@ -22,16 +22,32 @@ export const createSession = async (
         location: location,
         studentsAttending: [],
         verified: false,
+        uploadedDocuments: [],
     });
 };
 
-export const updateSession = async (id, topic, location) => {
-    const sessionDoc = doc(db, "psisessions", id);
-    const newFields = {
-        topic: topic,
-        location: location
-    };
-    await updateDoc(sessionDoc, newFields);
+// export const updateSession = async (id, topic, location) => {
+//     const sessionDoc = doc(db, "psisessions", id);
+//     const newFields = {
+//         topic: topic,
+//         location: location
+//     };
+//     await updateDoc(sessionDoc, newFields);
+// };
+
+export const updateSession = async (sessionId, updatedData) => {
+    try {
+        const sessionRef = doc(db, "psisessions", sessionId);
+        await updateDoc(sessionRef, updatedData);
+        console.log("Session updated successfully:", sessionId);
+
+        // Optional: Fetch the updated document
+        const updatedDoc = await getDoc(sessionRef);
+        return updatedDoc.exists() ? updatedDoc.data() : null;
+    } catch (error) {
+        console.error("Error updating session:", error);
+        throw error; // Rethrow to handle it in the calling code
+    }
 };
 
 export const addStudent = async (id, uid, name, email) => {

@@ -33,15 +33,17 @@ const LoginPage = () => {
             } else {
                 setErrorMessage("An error occurred. Please try again later.");
             }
+            setSubmitButtonDisabled(false); // Re-enable the button after an error
         }
     };
-
 
     const handleLogin = async (precheckLogin) => {
         setSubmitButtonDisabled(true);
         const leadOrStu = await leaderOrStudent(values.email);
         if (leadOrStu === "student")
             navigate(`/dashboard/student/${precheckLogin.uid}`);
+        else if (leadOrStu === "admin")
+            navigate(`/dashboard/admin/${precheckLogin.uid}`);
         else{
             const leaderVerified = await verification(values.email);
             if (!leaderVerified)
@@ -52,23 +54,27 @@ const LoginPage = () => {
         }
     }
 
+    const handleInputChange = (field, value) => {
+        setValues(prevValues => ({
+            ...prevValues,
+            [field]: value,
+        }));
+
+        // Reset error message and re-enable the button when input changes
+        setErrorMessage("");
+        setSubmitButtonDisabled(false);
+    };
 
     return (
         <>
-            <div
-                className={styles.scrollingAdminLoginContainer}
-            >
+            <div className={styles.scrollingAdminLoginContainer}>
                 <AppHeader
                     pageTitle="LOGIN"
                     headerContents={[
                         {
                             "text": "CREATE ACCOUNT",
                             "link": "/create/account"
-                        }/*,
-                        {
-                            "text": "ADMIN LOGIN",
-                            "link": "/create/account" /!* Change link to be admin login page*!/
-                        }*/
+                        }
                     ]}
                 />
                 <div className="login-section">
@@ -94,23 +100,20 @@ const LoginPage = () => {
                                             type="email"
                                             label="GGC Email"
                                             placeholder="Enter email address"
-                                            onChange={(event) =>
-                                                setValues((prev) => ({...prev, email: event.target.value}))
-                                            }
+                                            value={values.email}
+                                            onChange={(event) => handleInputChange("email", event.target.value)}
                                         />
                                         <Input
                                             type="password"
                                             label="Password"
                                             placeholder="Enter password"
-                                            onChange={(event) =>
-                                                setValues((prev) => ({...prev, pass: event.target.value}))
-                                            }
+                                            value={values.pass}
+                                            onChange={(event) => handleInputChange("pass", event.target.value)}
                                         />
                                         <label className="checkbox-label">
                                             <input type="checkbox"/>
                                             Stay Signed In
                                         </label>
-                                        {/*<Button type="submit" className="submit-button">Login</Button>*/}
                                         {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                                         <Button
                                             onClick={handleErrors}

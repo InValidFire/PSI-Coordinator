@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { db } from "../config.js";
-import { collection, addDoc, getDocs, query, where, updateDoc, arrayUnion } from "firebase/firestore";
+import {collection, addDoc, getDocs, query, where, updateDoc, arrayUnion, doc} from "firebase/firestore";
 
 const accountsCollectionRef = collection(db, "users");
 
@@ -106,5 +106,44 @@ export const addSessionId = async (sessionid, uid) => {
         return true; // Success
     } catch (error) {
         return false;
+    }
+};
+
+export const findLeaders = async () => {
+    try {
+        // Create a query to find all documents where role is "psi"
+        const leadersQuery = query(accountsCollectionRef, where("role", "==", "psi"));
+
+        // Execute the query
+        const querySnapshot = await getDocs(leadersQuery);
+
+        // Map over the results and return the data
+        const leaders = querySnapshot.docs.map((doc) => doc.data());
+
+        return leaders; // Return the list of leaders
+    } catch (error) {
+        console.error("Error fetching leaders:", error);
+        return []; // Return an empty array in case of an error
+    }
+};
+
+export const verifyLeader = async (id) => {
+    try {
+        // Query to find the leader document in Firestore
+        const leaderQuery = query(
+            collection(db, "users"),
+            where("id", "==", id)
+        );
+        const querySnapshot = await getDocs(leaderQuery);
+
+        if (!querySnapshot.empty) {
+            const leaderDoc = querySnapshot.docs[0]; // Get the first matching document
+            const leaderDocRef = doc(db, "users", leaderDoc.id); // Get document reference
+
+            // Update the "verified" field to true
+            await updateDoc(leaderDocRef, { verified: true });
+        }
+    } catch (error) {
+        console.error("Error verifying leader:", error);
     }
 };
